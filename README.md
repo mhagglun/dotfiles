@@ -17,13 +17,13 @@
 | Package                                                                   | Description                                                                       |
 |---------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | [Manjaro](https://manjaro.org/)                                           | My current distro of choice                                                       |
-| [Zsh](https://github.com/zsh-users/zsh)                                   | The most powerful shell out there!                                                |
+| [zsh](https://github.com/zsh-users/zsh)                                   | The most powerful shell out there!                                                |
 | [i3-gaps](https://github.com/Airblader/i3)                                | i3 window manager with more features                                              |
 | [polybar](https://github.com/jaagr/polybar)                               | Highly customizable status bar                                                    |
 | [kitty](https://sw.kovidgoyal.net/kitty/)                                 | A GPU based terminal emulator                                                     |
 | [ranger](https://github.com/ranger/ranger)                                | Ranger is a minimalistic console file manager                                     |
-| [Rofi](https://github.com/DaveDavenport/rofi)                             | A window switcher, application launcher and dmenu replacement                     |
-| [Compton](https://github.com/chjj/compton)                                | A compositor for X, to get window transparency and avoid tearing and vsync issues |
+| [rofi](https://github.com/DaveDavenport/rofi)                             | A window switcher, application launcher and dmenu replacement                     |
+| [compton](https://github.com/chjj/compton)                                | A compositor for X, to get window transparency and avoid tearing and vsync issues |
 | [dunst](https://github.com/dunst-project/dunst)                           | Dunst is a highly configurable and lightweight notification daemon                |
 | [neofetch](https://github.com/dylanaraps/neofetch)                        | A fast and highly customizable system info script                                 |
 | [pywal](https://github.com/dylanaraps/pywal)                              | A tool that generates a color palette from the dominant colors in an image        |
