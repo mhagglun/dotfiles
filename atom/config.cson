@@ -1,0 +1,18 @@
+"*":
+  core:
+    telemetryConsent: "no"
+    themes: [
+      "atom-material-ui"
+      "ocean-dark-syntax"
+    ]
+    titleBar: "custom"
+  editor:
+    fontFamily: "Monaco"
+    fontSize: 11
+  "exception-reporting":
+    userId: "fc58c40f-65ff-437e-a703-8fe3d7069243"
+  latex:
+    buildOnSave: true
+    opener: "pdf-view"
+  welcome:
+    showOnStartup: false
