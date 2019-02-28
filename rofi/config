@@ -1,0 +1,29 @@
+[options]
+allow_bold = true
+clickable_url = true
+font = Hack Nerd Font 11
+scrollback_lines = 10000
+
+[colors]
+background = #080414
+foreground = #8cacbb
+background = #180a1e
+foreground = #eae091
+cursor     = #eae091
+
+color0  = #180a1e
+color1  = #9D1233
+color2  = #E51A32
+color3  = #F15F36
+color4  = #B84F47
+color5  = #3FBE44
+color6  = #E69E31
+color7  = #eae091
+color8  = #a39c65
+color9  = #9D1233
+color10 = #E51A32
+color11 = #F15F36
+color12 = #B84F47
+color13 = #3FBE44
+color14 = #E69E31
+color15 = #eae091
