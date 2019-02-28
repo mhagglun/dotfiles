@@ -1,6 +1,6 @@
-                         ╺┳┓ ┏━┓ ╺┳╸ ┏━┓
-                          ┃┃ ┃ ┃  ┃  ┗━┓
-                         ╺┻┛ ┗━┛  ╹  ┗━┛
+                                              ╺┳┓ ┏━┓ ╺┳╸ ┏━┓
+                                               ┃┃ ┃ ┃  ┃  ┗━┓
+                                              ╺┻┛ ┗━┛  ╹  ┗━┛
 
 > These are my dotfiles for Manjaro i3. There are many more like it, but this one is mine.
 
