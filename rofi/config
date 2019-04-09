@@ -27,3 +27,5 @@ color12 = #B84F47
 color13 = #3FBE44
 color14 = #E69E31
 color15 = #eae091
+
+rofi.theme: ~/.cache/wal/colors-rofi-light.rasi

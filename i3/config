@@ -2,7 +2,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
-set $mod Mod1
+set $mod Mod4
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -21,14 +21,14 @@ bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:URWGothic-Book 11
-
+#font xft:URWGothic-Book 11
+font xft:System San Francisco Display 11
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
 # start a terminal
-#bindsym $mod+Return exec terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec uxterm
+
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -37,24 +37,34 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec rofi -show drun
 
 # launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
+# bindsym $mod+z exec --no-startup-id morc_menu
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-exec --no-startup-id volumeicon
-##bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-exec --no-startup-id start-pulseaudio-x11
-#exec --no-startup-id pa-applet
+#exec --no-startup-id volumeicon
+#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+
+exec --no-startup-id pulseaudio
 bindsym $mod+Ctrl+m exec pavucontrol
 
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/pactl_volume.sh +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/scripts/pactl_volume.sh -5%
+bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/scripts/pactl_volume.sh M
+
+
+
+# Screen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -64,25 +74,19 @@ bindsym XF86AudioPrev exec playerctl previous
 
 ################################################################################################
 
-# Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
-
 # Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec palemoon
+bindsym $mod+Ctrl+b exec i3-sensible-terminal -e 'bmenu'
 bindsym $mod+shift+f exec firefox
-bindsym $mod+g exec kitty 'ranger'    # Launch ranger
-bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F5 exec terminal -e 'mocp'
+bindsym $mod+g exec uxterm -e ranger
+#bindsym $mod+Shift+F3 exec gksu pcmanfm
+bindsym $mod+F5 exec uxterm -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
-bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+#bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # focus_follows_mouse no
 
@@ -196,17 +200,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
-assign [class="Firefox"] $ws1
-
-
-# Assign workspaces to monitors
-workspace $ws1 output DP-1
-workspace $ws2 output HDMI-0
-workspace $ws3 output DP-1
-workspace $ws4 output HDMI-0
-workspace $ws9 output HDMI-0
-workspace $ws10 output HDMI-0
-
+# assign [class="Firefox"] $ws1
 
 
 # Open specific applications in floating mode
@@ -219,14 +213,11 @@ for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Manjaro-hello"] floating enable
-for_window [class="Manjaro Settings Manager"] floating enable border normal
+#for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
-for_window [class="octopi"] floating enable
-for_window [title="About Pale Moon"] floating enable
-for_window [class="Pamac-manager"] floating enable
+#for_window [class="Pamac-manager"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
@@ -236,7 +227,7 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
-for_window [class="Matplotlib"] floating enable
+#for_window [class="Matplotlib"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -249,6 +240,9 @@ bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Lockscreen
+bindsym $mod+shift+x exec betterlockscreen -l dim
 
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"
@@ -291,34 +285,27 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-# Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
-
 # Autostart applications
-exec_always xrandr --output DVI-D-0 --off --output HDMI-0 --mode 1920x1080 --pos 1920x0 --rotate normal --output DVI-I-1 --off --output DVI-I-0 --off --output DP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-0 --off
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
+exec --no-startup-id pasystray
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
-# exec --no-startup-id blueman-applet
+exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
-
+exec --no-startup-id libinput-gestures-setup start
+exec --no-startup-id dropbox start 
 
 exec_always --no-startup-id wal -R
-exec_always --no-startup-id nitrogen --restore &
-exec_always --no-startup-id xrdb ~/.Xresources
-exec_always --no-startup-id $HOME/.config/polybar/start_polybar.sh
+exec_always --no-startup-id xrdb ~/.cache/wal/colors.Xresources
+#exec_always --no-startup-id $HOME/.config/polybar/start_polybar.sh
 exec_always dbus-launch compton --config ~/.config/compton.conf 
 exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc 
 exec_always --no-startup-id $HOME/.config/dunst/dunst_color.sh
+exec_always --no-startup-id xrdb -merge ~/.Xresources
 
-# exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
+#exec --no-startup-id xautolock -time 10 -locker blurlock
+#exec_always --no-startup-id ff-theme-util
+#exec_always --no-startup-id fix_xcursor
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -355,33 +342,34 @@ set_from_resource $term_color15    color15
 
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
-#bar {
-#	i3bar_command i3bar
-#	status_command i3status
-#	position bottom
+bar {
+	#i3bar_command i3bar
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	position top
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
+	tray_output primary
 #	tray_output eDP1
 
 #	bindsym button4 nop
 #	bindsym button5 nop
-#   font xft:URWGothic-Book 11
+#       font xft:URWGothic-Book 11
 #	strip_workspace_numbers yes
 
- #   colors {
- #       background #222D31
- #       statusline #F9FAF9
- #       separator  #454947
 
+    colors {
+        background $bg
+        statusline $fg
+        separator  $fg
+	
 #                      border  backgr. text
-#        focused_workspace  #F9FAF9 #16a085 #292F34
-#        active_workspace   #595B5B #353836 #FDF6E3
-#        inactive_workspace #595B5B #222D31 #EEE8D5
-#        binding_mode       #16a085 #2C2C2C #F9FAF9
-#        urgent_workspace   #16a085 #FDF6E3 #E5201D
-#    }
-#}
+        focused_workspace  $bg $bg #ff0000
+        active_workspace   $bg $bg $color1
+        inactive_workspace $bg $bg $color2
+        binding_mode       $bg $bg #ff0000
+        urgent_workspace   $bg $bg #ff0000
+    }
+}
 
 
 
@@ -389,8 +377,8 @@ set_from_resource $term_color15    color15
 bindsym $mod+m bar mode toggle
 
 # Theme colors
-# class                   border  backgr. text    indic.   child_border
-client.focused          $bg     $bg     $fg  $bg       $bg
+# class               border  backgr.  text indic.   child_border
+client.focused          $bg     $bg     $fg  $fg       $color0
 client.focused_inactive $bg     $bg     $fg  $bg       $bg
 client.unfocused        $bg     $bg     $fg  $bg       $bg
 client.urgent           $bg     $bg     $fg  $bg       $bg
@@ -404,7 +392,7 @@ client.background       $bg
 #############################
 
 # Set inner/outer gaps
-gaps inner 8
+gaps inner 2
 gaps outer 2
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
@@ -413,7 +401,7 @@ gaps outer 2
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-#smart_gaps on
+smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
@@ -432,24 +420,24 @@ mode "$mode_gaps" {
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
+        bindsym plus  gaps inner current plus 2
+        bindsym minus gaps inner current minus 2
         bindsym 0     gaps inner current set 0
 
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+plus  gaps inner all plus 2
+        bindsym Shift+minus gaps inner all minus 2
         bindsym Shift+0     gaps inner all set 0
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
+        bindsym plus  gaps outer current plus 2
+        bindsym minus gaps outer current minus 2
         bindsym 0     gaps outer current set 0
 
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+plus  gaps outer all plus 2
+        bindsym Shift+minus gaps outer all minus 2
         bindsym Shift+0     gaps outer all set 0
 
         bindsym Return mode "default"
