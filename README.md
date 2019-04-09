@@ -2,7 +2,7 @@
                                                   ┃┃ ┃ ┃  ┃  ┗━┓
                                                  ╺┻┛ ┗━┛  ╹  ┗━┛
 
-> These are my dotfiles for Manjaro i3. There are many more like it, but this one is mine.
+> These are my dotfiles for laptop running Ubuntu 18.04 with i3wm.
 
 
 ## Setup
