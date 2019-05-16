@@ -17,7 +17,7 @@
 | Package                                                                   | Description                                                                       |
 |---------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | [Manjaro](https://manjaro.org/)                                           | My current distro of choice                                                       |
-| [zsh](https://github.com/zsh-users/zsh)                                   | The most powerful shell out there                                              |
+| [zsh](https://github.com/zsh-users/zsh)                                   | A powerful shell                                             |
 | [i3-gaps](https://github.com/Airblader/i3)                                | i3 window manager with more features                                              |
 | [polybar](https://github.com/jaagr/polybar)                               | Highly customizable status bar                                                    |
 | [kitty](https://sw.kovidgoyal.net/kitty/)                                 | GPU based terminal emulator                                                     |
