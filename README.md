@@ -9,7 +9,7 @@
 
 | Package                                                                   | Description                                                                       |
 |---------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| [Manjaro](https://manjaro.org/)                                           | My current distro of choice                                                       |
+| [Ubuntu](https://www.ubuntu.com/)                                         | My current distro of choice                                                       |
 | [zsh](https://github.com/zsh-users/zsh)                                   | A powerful shell                                               |
 | [i3-gaps](https://github.com/Airblader/i3)                                | i3 window manager with more features                                              |
 | [ranger](https://github.com/ranger/ranger)                                | Ranger is a minimalistic console file manager                                     |
