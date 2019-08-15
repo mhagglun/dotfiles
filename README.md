@@ -2,8 +2,7 @@
                                                   ┃┃ ┃ ┃  ┃  ┗━┓
                                                  ╺┻┛ ┗━┛  ╹  ┗━┛
 
-> These are my dotfiles for Manjaro i3. There are many more like it, but this one is mine.
-
+> These are my dotfiles for Manjaro i3. 
 ## Screenshots
 ![fetch](screenshots/clean.png?raw=true "Clean")
 ![fetch](screenshots/fakebusy.png?raw=true "Fake busy")
