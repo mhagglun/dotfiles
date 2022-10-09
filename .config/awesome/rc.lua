@@ -28,7 +28,7 @@ local mytable       = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 -- {{{ Error handling
 
--- Check if awesome encountered an error during startup and fell back to
+-- Check if awesome encountered an error during back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
     naughty.notify {
@@ -70,6 +70,19 @@ end
 
 run_once({ "urxvtd", "unclutter -root" }) -- comma-separated entries
 
+
+do
+    local cmds = {
+	    "nm-applet",
+	    --"pasystray"
+    }
+
+    for _, i in pairs(cmds) do
+        awful.spawn.single_instance(i)
+    end
+end
+
+
 -- This function implements the XDG autostart specification
 --[[
 awful.spawn.with_shell(
@@ -85,19 +98,14 @@ awful.spawn.with_shell(
 -- {{{ Variable definitions
 
 local themes = {
-    "blackburn",       -- 1
-    "copland",         -- 2
-    "dremora",         -- 3
-    "holo",            -- 4
-    "multicolor",      -- 5
-    "powerarrow",      -- 6
-    "powerarrow-dark", -- 7
-    "rainbow",         -- 8
-    "steamburn",       -- 9
-    "vertex"           -- 10
+    "dremora",         -- 1
+    "holo",            -- 2
+    "powerarrow-dark", -- 3
+    "rainbow",         -- 4
+    "vertex"           -- 5
 }
 
-local chosen_theme = themes[7]
+local chosen_theme = themes[1]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "alacritty"
@@ -119,7 +127,7 @@ awful.layout.layouts = {
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
     --awful.layout.suit.max,
-    --awful.layout.suit.max.fullscreen,
+    awful.layout.suit.max.fullscreen,
     --awful.layout.suit.magnifier,
     --awful.layout.suit.corner.nw,
     --awful.layout.suit.corner.ne,
@@ -132,7 +140,6 @@ awful.layout.layouts = {
     --lain.layout.termfair,
     --lain.layout.termfair.center
 }
-
 lain.layout.termfair.nmaster           = 3
 lain.layout.termfair.ncol              = 1
 lain.layout.termfair.center.nmaster    = 3
@@ -172,6 +179,7 @@ awful.util.tasklist_buttons = mytable.join(
 )
 
 beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
+--beautiful.wallpaper = string.format("%s/.config/wallpapers/wallpaper.jpg", os.getenv("HOME"))
 
 -- }}}
 
@@ -683,21 +691,14 @@ awful.rules.rules = {
     -- Floating clients.
     { rule_any = {
         instance = {
-          "DTA",  -- Firefox addon DownThemAll.
           "copyq",  -- Includes session name in class.
           "pinentry",
         },
         class = {
           "Arandr",
           "Blueman-manager",
-          "Gpick",
-          "Kruler",
-          "MessageWin",  -- kalarm.
-          "Sxiv",
-          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
           "Wpa_gui",
-          "veromix",
-          "xtightvncviewer"},
+          },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
@@ -762,8 +763,8 @@ client.connect_signal("request::titlebars", function(c)
 
     awful.titlebar(c, { size = 16 }) : setup {
         { -- Left
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
+            --awful.titlebar.widget.iconwidget(c),
+            --buttons = buttons,
             layout  = wibox.layout.fixed.horizontal
         },
         { -- Middle
@@ -793,7 +794,5 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
-
-awful.spawn.with_shell("nitrogen --restore")
 
 -- }}}
