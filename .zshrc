@@ -129,13 +129,26 @@ add-zsh-hook -Uz precmd rehash_precmd
 
 alias pvpn="/usr/bin/protonvpn-cli"
 
+alias vim=/usr/bin/nvim
+
 # omz
 alias zshconfig="geany ~/.zshrc"
 alias ohmyzsh="thunar ~/.oh-my-zsh"
 
 # open
-alias open='xdg-open'
-
+o () {
+    for i in "$@"
+    do
+        mimetype=$(xdg-mime query filetype "$i")
+        prog=$(xdg-mime query default "$mimetype")
+        if grep -qs Terminal=true "/usr/share/applications/$prog"
+        then
+            xdg-open "$i"
+        else
+            xdg-open "$i" >/dev/null 2>/dev/null &
+        fi
+    done
+}
 #dotfiles alias
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
@@ -163,12 +176,6 @@ alias gu=gitundo
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 export PATH=$PATH:/home/marcus/.local/bin
 export PATH=$PATH:/opt/google-cloud-sdk/bin
-
-# Depict
-export DEPICT_ROOT="/home/marcus/Documents/depict.ai"
-export DEPICT_DATA_PATH="${DEPICT_ROOT}/data"
-source "${DEPICT_ROOT}/depict.rc"
-source "${DEPICT_ROOT}/venv/bin/activate"
 
 eval "$(zoxide init zsh)"
 
