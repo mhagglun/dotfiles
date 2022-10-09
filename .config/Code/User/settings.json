@@ -1,0 +1,41 @@
+{
+    "sync.gist": "915639b98970c7950818ec1b2bb306ea",
+    "github.copilot.inlineSuggest.enable": true,
+    "typescript.disableAutomaticTypeAcquisition": true,
+    "[python]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": true,
+    },
+    "bracketPairColorizer.depreciation-notice": false,
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": true,
+        "plaintext": true,
+        "markdown": false
+    },
+    "python.formatting.provider": "black",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true,
+    "editor.semanticTokenColorCustomizations": {
+        "[One Dark Pro]": { // Apply to this theme only
+            "enabled": true,
+            "rules": {
+                "module": "#a9b9c0",
+                "*.decorator:python": "#61AFEF",
+                "*.typeHintComment:python": "#aaaaaa"
+            }
+        }
+    },
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json": "argo/**/*.yaml",
+    },
+    "redhat.telemetry.enabled": false,
+    "files.watcherExclude": {
+        "**/data/*/**": true,
+        "**/venv/*/**": true
+    },
+    "window.zoomLevel": 1,
+    "workbench.colorTheme": "One Dark Pro",
+}
