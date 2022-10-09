@@ -537,7 +537,10 @@ globalkeys = mytable.join(
             os.execute(string.format("rofi -show %s", 'run'))
         end,
         {description = "show rofi", group = "launcher"}),
- 
+
+    awful.key({}, "Print", function () awful.util.spawn( "flameshot gui" ) end,
+        {description = "Flameshot screenshot", group = "hotkeys"}),
+
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
 
@@ -761,7 +764,7 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c, { size = 16 }) : setup {
+    awful.titlebar(c, { size = 18 }) : setup {
         { -- Left
             --awful.titlebar.widget.iconwidget(c),
             --buttons = buttons,
