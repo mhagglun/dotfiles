@@ -407,6 +407,9 @@ globalkeys = mytable.join(
     awful.key({ modkey, "Shift"   }, "c", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
+    awful.key({ modkey, altkey }, "j", function () awful.client.incwfact( 0.05)    end),
+    awful.key({ modkey, altkey }, "k", function () awful.client.incwfact(-0.05)    end),
+
     awful.key({ modkey, altkey    }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
     awful.key({ modkey, altkey    }, "h",     function () awful.tag.incmwfact(-0.05)          end,
