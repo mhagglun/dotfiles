@@ -108,8 +108,7 @@ local themes = {
 local chosen_theme = themes[1]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
-local terminal     = "alacritty"
-local vi_focus     = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
+local terminal     = "kitty"
 local cycle_prev   = true  -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor       = os.getenv("EDITOR") or "nvim"
 local browser      = "firefox"
@@ -282,7 +281,7 @@ globalkeys = mytable.join(
               {description = "take a screenshot", group = "hotkeys"}),
 
     -- Betterlockscreen
-    awful.key({ modkey, altkey }, "l", function () os.execute("betterlockscreen --lock dimblur --display 1 --span") end,
+    awful.key({ "Control", "Shift" }, "l", function () os.execute("betterlockscreen --lock dimblur --display 1 --span") end,
               {description = "lock screen", group = "hotkeys"}),
 
     -- Show help

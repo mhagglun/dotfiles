@@ -160,6 +160,10 @@ alias lm='ls -m'
 alias lr='ls -R'
 alias lg='ls -l --group-directories-first'
 
+# Kitty aliases
+alias icat="kitty +kitten icat"
+alias d="kitty +kitten diff"
+
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
