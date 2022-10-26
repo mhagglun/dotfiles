@@ -18,7 +18,6 @@ local awful = require("awful")
 
 local themes = {
    "pastel", -- 1
-   "mirage"  -- 2
 }
 
 -- change this number to use the corresponding theme
@@ -46,6 +45,7 @@ network_interfaces = {
 -- List of apps to run on start-up
 local run_on_start_up = {
    "picom --experimental-backends --config " .. theme_config_dir .. "picom.conf",
+   "pasystray",
    "redshift",
    "unclutter"
 }

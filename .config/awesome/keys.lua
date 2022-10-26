@@ -192,19 +192,19 @@ keys.globalkeys = gears.table.join(
    ),
    awful.key({}, "XF86AudioNext",
       function()
-         awful.spawn("mpc next", false)
+         awful.spawn("playerctl next", false)
       end,
       {description = "next music", group = "hotkeys"}
    ),
    awful.key({}, "XF86AudioPrev",
       function()
-         awful.spawn("mpc prev", false)
+         awful.spawn("playerctl prev", false)
       end,
       {description = "previous music", group = "hotkeys"}
    ),
    awful.key({}, "XF86AudioPlay",
       function()
-         awful.spawn("mpc toggle", false)
+         awful.spawn("playerctl play-pause", false)
       end,
       {description = "play/pause music", group = "hotkeys"}
    ),
