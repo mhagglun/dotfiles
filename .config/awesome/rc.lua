@@ -23,8 +23,8 @@ local theme_config_dir = gears.filesystem.get_configuration_dir() .. "/configura
 
 -- define default apps (global variable so other components can access it)
 apps = {
-	network_manager = "nm-connection-editor", -- recommended: nm-connection-editor
-	power_manager = "xfce4-power-manager", -- recommended: xfce4-power-manager
+	network_manager = "nm-connection-editor",
+	power_manager = "xfce4-power-manager",
 	terminal = "kitty",
 	browser = "firefox",
 	launcher = "rofi -normal-window -modi drun -show drun -theme " .. theme_config_dir .. "rofi.rasi",
@@ -39,6 +39,20 @@ network_interfaces = {
 	wlan = "wlan0",
 	lan = "enp24s0",
 }
+
+kbdcfg = {
+  cmd = "setxkbmap",
+  layouts = { "us", "se" },
+  current = 1,
+}
+
+--kbdcfg.cmd = "setxkbmap"
+--kbdcfg.layout = { "us", "se" }
+--kbdcfg.current = 1  -- us is default
+--kbdcfg.switch = function ()
+--   kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+--   os.execute(kbdcfg.cmd .. " " .. kbdcfg.layout[kbdcfg.current])
+
 
 -- List of apps to run on start-up
 local run_on_start_up = {

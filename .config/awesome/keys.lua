@@ -22,6 +22,11 @@ local altkey = "Mod1"
 -- define module table
 local keys = {}
 
+local function change_kbd_layout(kbdcfg)
+   kbdcfg.current = kbdcfg.current % #(kbdcfg.layouts) + 1
+   os.execute(kbdcfg.cmd .. " " .. kbdcfg.layouts[kbdcfg.current])
+end
+
 -- ===================================================================
 -- Movement Functions (Called by some keybinds)
 -- ===================================================================
@@ -151,6 +156,12 @@ keys.globalkeys = gears.table.join(
 	awful.key({ modkey }, "d", function()
 		awful.spawn(apps.launcher)
 	end, { description = "application launcher", group = "launcher" }),
+
+
+  -- Change keyboard layout
+  awful.key({ modkey }, "c", function()
+		change_kbd_layout(kbdcfg)
+	end, { description = "change keyboard layout", group = "hotkeys" }),
 
 	-- =========================================
 	-- FUNCTION KEYS
