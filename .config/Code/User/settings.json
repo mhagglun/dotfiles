@@ -1,45 +1,149 @@
 {
-    "sync.gist": "915639b98970c7950818ec1b2bb306ea",
-    "github.copilot.inlineSuggest.enable": true,
-    "typescript.disableAutomaticTypeAcquisition": true,
-    "[python]": {
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true,
-        "editor.formatOnSave": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": true,
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "window.zoomLevel": 2,
+  "telemetry.telemetryLevel": "off",
+
+  // vim settings
+  "vim.leader": "<space>",
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.highlightedyank.enable": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<leader>", "s", "a"],
+      "commands": ["editor.action.selectAll"]
     },
-    "bracketPairColorizer.depreciation-notice": false,
-    "editor.inlineSuggest.enabled": true,
-    "github.copilot.enable": {
-        "*": true,
-        "yaml": true,
-        "plaintext": true,
-        "markdown": false
+    {
+      "before": ["<leader>", "w"],
+      "commands": ["workbench.action.files.save"]
     },
-    "python.formatting.provider": "black",
-    "python.analysis.typeCheckingMode": "basic",
-    "python.analysis.autoImportCompletions": true,
-    "editor.semanticTokenColorCustomizations": {
-        "[One Dark Pro]": { // Apply to this theme only
-            "enabled": true,
-            "rules": {
-                "module": "#a9b9c0",
-                "*.decorator:python": "#61AFEF",
-                "*.typeHintComment:python": "#aaaaaa"
-            }
-        }
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.files.action.focusFilesExplorer"]
     },
-    "yaml.schemas": {
-        "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json": "argo/**/*.yaml",
+    {
+      "before": ["<leader>", "q"],
+      "commands": ["workbench.action.closeActiveEditor"]
     },
-    "redhat.telemetry.enabled": false,
-    "files.watcherExclude": {
-        "**/data/*/**": true,
-        "**/venv/*/**": true
+    {
+      "before": ["<leader>", "h"],
+      "commands": [":nohl"]
     },
-    "workbench.colorTheme": "One Dark Pro",
-    "editor.fontFamily": "Fira Code",
-    "editor.fontSize": 14,
-    "editor.fontLigatures": true,
-    "window.zoomLevel": 1,
-    "terminal.integrated.defaultProfile.linux": "zsh",
+    {
+      "before": ["<leader>", "s", "v"],
+      "commands": ["workbench.action.splitEditor"]
+    },
+    {
+      "before": ["<leader>", "s", "h"],
+      "commands": ["workbench.action.splitEditorDown"]
+    },
+    {
+      "before": ["<leader>", "t", "o"],
+      "commands": [":tabnew"]
+    },
+    {
+      "before": ["<leader>", "t", "x"],
+      "commands": [":tabclose"]
+    },
+    {
+      "before": ["<S-h>"],
+      "commands": [":tabp"]
+    },
+    {
+      "before": ["<S-l>"],
+      "commands": [":tabnext"]
+    },
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "f", "b"],
+      "commands": ["workbench.action.showAllEditors"]
+    },
+    {
+      "before": ["<leader>", "f", "s"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "r", "n"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["<leader>", "a", "f"],
+      "commands": ["editor.action.autoFix"]
+    },
+    {
+      "before": ["<leader>", "r", "a"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["<leader>", "f", "m"],
+      "commands": ["editor.action.format"]
+    },
+    {
+      "before": ["<leader>", "c", "a"],
+      "commands": ["editor.action.quickFix"]
+    },
+    {
+      "before": ["<S-k>"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.files.action.focusFilesExplorer"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    },
+    {
+      "before": ["<S-j>"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
+    {
+      "before": ["<S-k>"],
+      "commands": ["editor.action.moveLinesUpAction"]
+    }
+  ],
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-c>": false,
+    "<C-x>": false
+  },
+  // To improve performance
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
 }

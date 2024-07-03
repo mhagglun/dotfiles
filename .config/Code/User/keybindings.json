@@ -1,0 +1,182 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "ctrl+1",
+    "command": "workbench.action.openEditorAtIndex1"
+  },
+  {
+    "key": "ctrl+2",
+    "command": "workbench.action.openEditorAtIndex2"
+  },
+  {
+    "key": "ctrl+3",
+    "command": "workbench.action.openEditorAtIndex3"
+  },
+  {
+    "key": "ctrl+4",
+    "command": "workbench.action.openEditorAtIndex4"
+  },
+  {
+    "key": "ctrl+5",
+    "command": "workbench.action.openEditorAtIndex5"
+  },
+  {
+    "key": "ctrl+6",
+    "command": "workbench.action.openEditorAtIndex6"
+  },
+  {
+    "key": "ctrl+7",
+    "command": "workbench.action.openEditorAtIndex7"
+  },
+  {
+    "key": "ctrl+8",
+    "command": "workbench.action.openEditorAtIndex8"
+  },
+  {
+    "key": "ctrl+9",
+    "command": "workbench.action.openEditorAtIndex9"
+  },
+  // custom
+  {
+    "key": "ctrl+alt+j",
+    "command": "editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+alt+down",
+    "command": "-editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+alt+k",
+    "command": "editor.action.copyLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+alt+up",
+    "command": "-editor.action.copyLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+f f",
+    "command": "prettier.forceFormatDocument"
+  },
+  {
+    "key": "ctrl+f r",
+    "command": "editor.action.startFindReplaceAction",
+    "when": "editorFocus || editorIsOpen"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "-editor.action.startFindReplaceAction",
+    "when": "editorFocus || editorIsOpen"
+  },
+  {
+    "key": "ctrl+alt+e",
+    "command": "workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "ctrl+alt+p",
+    "command": "-workbench.action.showCommands"
+  },
+  {
+    "key": "ctrl+p k",
+    "command": "workbench.action.openGlobalKeybindings"
+  },
+  {
+    "key": "a",
+    "command": "explorer.newFile",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "f",
+    "command": "explorer.newFolder",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "d",
+    "command": "deleteFile",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "y",
+    "command": "filesExplorer.copy",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "p",
+    "command": "filesExplorer.paste",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "x",
+    "command": "filesExplorer.cut",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "r",
+    "command": "renameFile",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "workbench.explorer.openEditorsView.active || filesExplorerFocus && vim.active && vim.mode!='Insert'"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.navigateUp",
+    "when": "vim.active && vim.mode!='Insert'"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.files.action.focusOpenEditorsView",
+    "when": "filesExplorerFocus && vim.active && vim.mode!='Insert'"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.navigateRight",
+    "when": "vim.active && vim.mode!='Insert'"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.navigateDown",
+    "when": "vim.active && vim.mode!='Insert'"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.files.action.focusFilesExplorer",
+    "when": "!editorFocus && workbench.explorer.openEditorsView.active && vim.active && vim.mode!='Insert'"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.navigateLeft",
+    "when": "vim.active && vim.mode!='Insert'"
+  },
+  // {
+  //   "key": "ctrl+c",
+  //   "command": "vim.remap",
+  //   "when": "inputFocus && vim.mode == 'Normal'",
+  //   "args": {
+  //     "after": ["y", "y"]
+  //   }
+  // },
+  {
+    "key": "ctrl+shift+v",
+    "command": "-editor.action.clipboardPasteAction"
+  },
+  {
+    "key": "g d",
+    "command": "editor.action.revealDefinition",
+    "when": "vim.mode == 'Normal' && editorHasDefinitionProvider && editorTextFocus && !isEmbeddedEditor"
+  },
+  {
+    "key": "ctrl+p t",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "workbench.action.toggleSidebarVisibility"
+  }
+]
