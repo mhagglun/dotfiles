@@ -1,0 +1,11 @@
+import = ["~/.config/alacritty/kanagawa.toml"]
+
+[env]
+term = "xterm-256color"
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "FiraCode Nerd Font"
+
