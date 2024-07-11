@@ -8,8 +8,8 @@ return {
             options = {
                 icons_enabled = true,
                 theme = 'auto',
-                component_separators = { left = '', right = ''},
-                section_separators = { left = '', right = '' },
+                component_separators = { left = '', right = '' }, --{ left = '', right = ''},
+                section_separators = { left = '', right = '' },   -- { left = '', right = '' },
                 disabled_filetypes = {
                     statusline = {},
                     winbar = {},
@@ -25,7 +25,7 @@ return {
             },
             sections = {
                 lualine_a = {
-                    { "mode" },
+                    { "mode", fmt = string.lower },
                 },
                 lualine_b = { 'branch', 'diff', },
                 lualine_c = {
@@ -75,7 +75,7 @@ return {
             },
             tabline = {
                 lualine_a = {
-                    { "buffers", mode = 2, icons_enabled = false, separator = { right = "", left = "" } },
+                    { "buffers", mode = 0, icons_enabled = false, separator = { right = "", left = "" }  },
                 }
             },
             winbar = {},
