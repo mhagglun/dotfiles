@@ -56,9 +56,11 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
-                "lua_ls",
-                "ruff",
+                "bashls",
                 "basedpyright",
+                "ruff",
+                "lua_ls",
+                "gopls",
                 "rust_analyzer",
             },
             handlers = {

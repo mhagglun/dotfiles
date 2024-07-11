@@ -18,19 +18,19 @@ export EDITOR=nvim
 export ZSH=$HOME/.oh-my-zsh
 export PATH="$PATH:/usr/local/sbin:$DOTFILES/bin:$HOME/.local/bin:$DOTFILES/scripts/"
 export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/usr/local/go/bin"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+
+# poetry
+export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.local/share/pypoetry/venv/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# poetry
-export PATH="$HOME/.poetry/bin:$PATH"
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 # nvidia
 export PATH="/usr/local/cuda/bin:$PATH"
@@ -57,12 +57,12 @@ if type "direnv" > /dev/null; then
     eval "$(direnv hook zsh)"
 fi
 
-if type "zoxide" > /dev/null; then
-    eval "$(zoxide init zsh)"
+if type "pyenv" > /dev/null; then
+    eval "$(pyenv init -)"
 fi
 
-if type "pyenv" > /dev/null; then
-    eval "$(pyenv virtualenv-init -)" 
+if type "zoxide" > /dev/null; then
+    eval "$(zoxide init zsh)"
 fi
 
 if type "starship" > /dev/null; then
