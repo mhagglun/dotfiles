@@ -45,14 +45,14 @@ fi
 
 
 APT_LIBS=(
+    zsh
+    tmux
     zoxide
     fzf
     jq
     bat
     ripgrep
     xclip
-    zsh
-    tmux
 )
 
 info "Checking install for apt..."
@@ -72,6 +72,14 @@ success "All apt packages are installed"
 if ! directory_exists "$HOME/.oh-my-zsh"; then
     info "oh-my-zsh is not installed. Installing..."
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+    info "installing zsh plugins"
+    git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+    git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions"
+    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting"
+    git clone https://github.com/Aloxaf/fzf-tab "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-tab"
+    git clone https://github.com/djui/alias-tips.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/alias-tips"
+
     success "oh-my-zsh installed"
 else
     success "oh-my-zsh is already installed."
@@ -92,6 +100,7 @@ fi
 if ! command_exists pyenv; then
     info "Installing pyenv..."
     curl https://pyenv.run | bash
+    success "pyenv installed"
 else
     success "pyenv already installed"
 fi

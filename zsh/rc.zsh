@@ -47,11 +47,38 @@ export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
 
 
+# ZSH History
+HISTSIZE=5000
+HISTFILE=$HOME/.zsh_history
+SAVEFILE=$HISTFILE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+setopt hist_ignore_all_dups
+
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+
+# Completion styling
+zstyle ":completion:*" list-colors "${(s.:.)ZLS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+# Fixes slow pasting on larger snippets with fast-syntax-highlighting
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
 # OMZ plugins
-plugins=(git kubectl zsh-autosuggestions fast-syntax-highlighting)
+plugins=(git alias-tips fzf-tab zsh-autosuggestions fast-syntax-highlighting kubectl)
+fpath+=${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 source $ZSH/oh-my-zsh.sh
 
+if type "fzf" > /dev/null; then
+    source <(fzf --zsh)
+fi
 
 if type "direnv" > /dev/null; then
     eval "$(direnv hook zsh)"
