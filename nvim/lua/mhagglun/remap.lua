@@ -24,10 +24,10 @@ vim.keymap.set("v", "<leader>d", "\"_d")
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 vim.keymap.set("n", "<leader>q", ":bw<CR>")
-vim.keymap.set("n", "<leader>b", ":enew<CR>")
+vim.keymap.set("n", "<leader>n", ":enew<CR>")
 vim.keymap.set("n", "<leader><tab>", ":bn<CR>")
 vim.keymap.set("n", "<leader><S-tab>", ":bp<CR>")
-
+vim.keymap.set("n", "<leader><esc>", ":noh<cr>")
 -- indent
 vim.keymap.set("n", "<", "<<")
 vim.keymap.set("n", ">", ">>")

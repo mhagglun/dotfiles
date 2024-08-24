@@ -28,12 +28,7 @@ return {
                     { "mode", fmt = string.lower },
                 },
                 lualine_b = { 'branch', 'diff', },
-                lualine_c = {
-                    -- {
-                    --     "filename",
-                    --     path = 0,
-                    -- },
-                },
+                lualine_c = { 'filename' },
                 lualine_x = {
                     {
                         'diagnostics', sources = { 'nvim_lsp' }
@@ -74,9 +69,9 @@ return {
                 lualine_z = {}
             },
             tabline = {
-                lualine_a = {
-                    { "buffers", mode = 0, icons_enabled = false, separator = { right = "", left = "" }  },
-                }
+                -- lualine_a = {
+                --     { "buffers", mode = 0, icons_enabled = false, separator = { right = "", left = "" } },
+                -- }
             },
             winbar = {},
             inactive_winbar = {},

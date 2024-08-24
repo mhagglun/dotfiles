@@ -1,1 +1,3 @@
 $DOTFILES/bin/tmux-sessionizer=$HOME/.local/bin/tmux-sessionizer
+$DOTFILES/bin/kitty-new-tab=$HOME/.local/bin/kitty-new-tab
+$DOTFILES/bin/kitty-switch-tab=$HOME/.local/bin/kitty-switch-tab

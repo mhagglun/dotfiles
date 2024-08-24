@@ -1,5 +1,7 @@
 alias vim=nvim
 alias cat=/usr/bin/batcat
+alias icat="kitten icat"
+alias kd="kitten diff"
 
 ## Clipboard copy / paste
 alias pbcopy='xclip -selection clipboard'
@@ -15,15 +17,17 @@ alias gbr=git_branch_remote
 gitundo () {
   git reset --soft HEAD~$1
 }
-
 alias gu=gitundo
 
 gitdiffbat() {
     git diff --name-only --relative --diff-filter=d | xargs batcat --diff
 }
-
 alias gdb=gitdiffbat
 
+gitdiffkitten() {
+    git difftool --no-symlinks --dir-diff
+}
+alias gdk=gitdiffkitten
 
 # Docker
 dclear () {

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    # Use fzf to select a directory
+    selected=$(find ~/repos ~/projects ~/ -mindepth 1 -maxdepth 1 -type d | fzf)
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+
+# Check if kitty is running
+kitty_running=$(pgrep -x kitty)
+
+# If Kitty is not running, start it with the selected directory in a new tab
+if [[ -z $kitty_running ]]; then
+    kitty --detach --directory="$selected" &
+    exit 0
+fi
+
+# Use Kitty remote control to open a new tab with the selected directory
+kitty @ launch --type=tab --cwd="$selected" --title="$selected_name"
