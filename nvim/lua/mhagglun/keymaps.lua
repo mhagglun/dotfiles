@@ -7,7 +7,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 vim.keymap.set("i", "jj", "<Esc>", { desc = "Escape insert mode" })
-vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
+
 vim.keymap.set("n", "<leader>q", "<cmd>bw<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<leader>n", "<cmd>enew<CR>", { desc = "Open a new empty buffer" })
 vim.keymap.set("n", "<leader><tab>", "<cmd>bn<CR>", { desc = "Go to next buffer" })
@@ -50,3 +50,8 @@ vim.keymap.set('n', '<leader>sr', [[:%s///g<Left><Left><Left>]], { desc = "Searc
 vim.keymap.set('n', '<leader>sl', [[:s///g<Left><Left><Left>]], { desc = "Search and replace on line" })
 vim.keymap.set('v', '<leader>sr', '"hy:%s/\\v<C-r>h//g<left><left>', { desc = "Replace selection in file" })
 vim.keymap.set('v', '<leader>sl', '"hy:s/\\v<C-r>h//g<left><left>', { desc = "Replace selection on line" })
+
+
+-- Save
+vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
+vim.keymap.set("c", "w!!", require("mhagglun.utils").sudo_write, { silent = true, desc = "Save as sudo" })
