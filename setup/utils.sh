@@ -3,7 +3,7 @@ info () {
 }
 
 user () {
-  printf "\r  [ \033[0;33m??\033[0m ] %s\n" "$1"
+  printf "\r  [ \033[0;36m??\033[0m ] %s\n" "$1"
 }
 
 success () {
@@ -11,7 +11,7 @@ success () {
 }
 
 warn () {
-  printf "\r\033[2K  [\033[0;31mWARNING\033[0m] %s\n" "$1"
+  printf "\r\033[2K  [\033[0;33mWARNING\033[0m] %s\n" "$1"
 }
 
 fail () {

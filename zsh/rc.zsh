@@ -36,8 +36,10 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="/usr/local/cuda/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 
-# zig
-export PATH="/usr/bin/zig:$PATH"
+# ZVM
+export ZVM_INSTALL="$HOME/.zvm/self"
+export PATH="$PATH:$HOME/.zvm/bin"
+export PATH="$PATH:$ZVM_INSTALL/"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
@@ -46,6 +48,7 @@ export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 # The next line enables shell command completion for gcloud.
 if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
 
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 
 # ZSH History
 HISTSIZE=5000
@@ -71,7 +74,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
 # OMZ plugins
-plugins=(git alias-tips fzf-tab zsh-autosuggestions fast-syntax-highlighting kubectl)
+plugins=(git kubectl alias-tips fzf-tab zsh-autosuggestions fast-syntax-highlighting)
 fpath+=${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 source $ZSH/oh-my-zsh.sh

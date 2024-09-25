@@ -4,68 +4,24 @@ set -e
 
 source "$(dirname "$0")/utils.sh"
 
-info "Updating package lists..."
-sudo apt-get update
-success "Package lists updated"
-
-# List of Python build dependencies
-# See https://github.com/pyenv/pyenv/wiki#suggested-build-environment
-PYTHON_BUILD_DEPENDENCIES=(
-  build-essential
-  libssl-dev
-  zlib1g-dev
-  libbz2-dev
-  libreadline-dev
-  libsqlite3-dev
-  curl
-  git
-  libncursesw5-dev
-  xz-utils
-  tk-dev
-  libxml2-dev
-  libxmlsec1-dev
-  libffi-dev
-  liblzma-dev
-)
-# Check and install Python build dependencies
-info "Checking Python build dependencies..."
-missing_packages=()
-for pkg in "${PYTHON_BUILD_DEPENDENCIES[@]}"; do
-  if ! package_exists "$pkg"; then
-    missing_packages+=("$pkg")
-  fi
-done
-
-if [ ${#missing_packages[@]} -ne 0 ]; then
-  info "Installing missing packages: ${missing_packages[*]}..."
-  sudo apt-get install -y "${missing_packages[@]}"
+# Detect the OS and run the corresponding script to install
+# packages with respective package manager
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    if [[ "$ID" == "arch" || "$ID_LIKE" == "arch" ]]; then
+        info "Detected Arch-based OS. Running arch.sh..."
+        bash "$(dirname "$0")/arch.sh"
+    elif [[ "$ID" == "ubuntu" || "$ID_LIKE" == "debian" ]]; then
+        info "Detected Ubuntu-based OS. Running apt.sh..."
+        bash "$(dirname "$0")/apt.sh"
+    else
+        error "Unsupported OS: $ID"
+        exit 1
+    fi
 else
-  success "All Python build dependencies are already installed."
+    error "Cannot detect OS. /etc/os-release not found."
+    exit 1
 fi
-
-
-APT_LIBS=(
-    zsh
-    tmux
-    zoxide
-    fzf
-    jq
-    bat
-    ripgrep
-    xclip
-)
-
-info "Checking install for apt..."
-for pkg in "${APT_LIBS[@]}"; do
-  if ! package_exists "$pkg"; then
-    info "Installing $pkg..."
-    sudo apt-get install -y "$pkg"
-    success "Installed $pkg"
-  else
-    success "$pkg is already installed"
-  fi
-done
-success "All apt packages are installed"
 
 # ----------------------------------------------------------
 

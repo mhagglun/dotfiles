@@ -1,5 +1,4 @@
 alias vim=nvim
-alias cat=/usr/bin/batcat
 alias icat="kitten icat"
 alias kd="kitten diff"
 
