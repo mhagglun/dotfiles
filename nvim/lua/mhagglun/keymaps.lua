@@ -44,6 +44,12 @@ vim.keymap.set("n", ">", ">>", { desc = "Increase indentation" })
 vim.keymap.set("v", "<", "<gv", { desc = "Decrease indentation (visual mode)" })
 vim.keymap.set("v", ">", ">gv", { desc = "Increase indentation (visual mode)" })
 
+-- Resize windows
+vim.keymap.set("n", "<M-,>", "<c-w>5>", { desc = "Increase current window width" })
+vim.keymap.set("n", "<M-.>", "<c-w>5<", { desc = "Decrease current window width" })
+vim.keymap.set("n", "<M-t>", "<c-w>2+", { desc = "Increase current window height" })
+vim.keymap.set("n", "<M-s>", "<c-w>2-", { desc = "Decrease current window height" })
+
 -- Format & Comments
 vim.keymap.set("n", "<leader>fm", function() require('conform').format { async = true, lsp_fallback = true } end, { desc = "Format current buffer" })
 vim.keymap.set("n", "<leader>/", function() require("Comment.api").toggle.linewise.current() end, { desc = "Toggle line comment" })
@@ -54,7 +60,20 @@ vim.keymap.set('n', '<leader>sl', [[:s///g<Left><Left><Left>]], { desc = "Search
 vim.keymap.set('v', '<leader>sr', '"hy:%s/\\v<C-r>h//g<left><left>', { desc = "Replace selection in file" })
 vim.keymap.set('v', '<leader>sl', '"hy:s/\\v<C-r>h//g<left><left>', { desc = "Replace selection on line" })
 
-
 -- Save
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 vim.keymap.set("c", "w!!", require("mhagglun.utils").sudo_write, { silent = true, desc = "Save as sudo" })
+
+-- Terminal
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape terminal" })
+vim.keymap.set("n", ",st", function ()
+        vim.cmd.new()
+        vim.cmd.wincmd "J"
+        vim.api.nvim_win_set_height(0, 12)
+        vim.wo.winfixheight = true
+        vim.cmd.term()
+    end,
+    { desc = "Open terminal"}
+)
+
+

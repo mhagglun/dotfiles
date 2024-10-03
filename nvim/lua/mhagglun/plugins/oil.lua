@@ -1,6 +1,5 @@
 return {
     'stevearc/oil.nvim',
-    -- Optional dependencies
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
     config = function()
         require("oil").setup({
@@ -9,8 +8,6 @@ return {
             keymaps = {
                 ["g?"] = "actions.show_help",
                 ["<CR>"] = "actions.select",
-                -- ["<C-t>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
-                -- ["<C-h>"] = { "actions.select", opts = { horizontal = true }, desc = "Open the entry in a horizontal split" },
                 ["<C-p>"] = "actions.preview",
                 ["<C-c>"] = "actions.close",
                 ["<C-l>"] = "actions.refresh",

@@ -8,8 +8,8 @@ return {
             options = {
                 icons_enabled = true,
                 theme = 'auto',
-                component_separators = { left = '', right = '' }, --{ left = '', right = ''},
-                section_separators = { left = '', right = '' },   -- { left = '', right = '' },
+                component_separators = { left = '', right = '' },
+                section_separators = { left = '', right = '' },
                 disabled_filetypes = {
                     statusline = {},
                     winbar = {},
@@ -28,7 +28,12 @@ return {
                     { "mode", fmt = string.lower },
                 },
                 lualine_b = { 'branch', 'diff', },
-                lualine_c = { 'filename' },
+                lualine_c = { {
+                    "filename",
+                    symbols = {
+                        modified = "●",
+                    },
+                }, },
                 lualine_x = {
                     {
                         'diagnostics', sources = { 'nvim_lsp' }
@@ -71,7 +76,7 @@ return {
             tabline = {
                 -- lualine_a = {
                 --     { "buffers", mode = 0, icons_enabled = false, separator = { right = "", left = "" } },
-                -- }
+                -- },
             },
             winbar = {},
             inactive_winbar = {},
