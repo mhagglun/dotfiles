@@ -22,6 +22,7 @@ return {
     },
     {
         "folke/tokyonight.nvim",
+        event = "VeryLazy",
         name = "tokyonight",
         opts = {},
         config = function()
@@ -44,6 +45,7 @@ return {
     },
     {
         "rebelot/kanagawa.nvim",
+        event = "VeryLazy",
         name = "kanagawa",
         config = function()
             require("kanagawa").setup({
