@@ -15,7 +15,7 @@ vim.keymap.set("n", "<leader>q", "<cmd>bw<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<leader>n", "<cmd>enew<CR>", { desc = "Open a new empty buffer" })
 vim.keymap.set("n", "<leader><tab>", "<cmd>bn<CR>", { desc = "Go to next buffer" })
 vim.keymap.set("n", "<leader><S-tab>", "<cmd>bp<CR>", { desc = "Go to previous buffer" })
-vim.keymap.set("n", "<leader><esc>", "<cmd>noh<CR>", { desc = "Clear search highlights" })
+vim.keymap.set("n", "<leader><esc>", function() require('notify').dismiss() end, { desc = "Clear notifications" })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor" })
