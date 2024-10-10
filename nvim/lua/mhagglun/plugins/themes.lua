@@ -10,6 +10,7 @@ return {
             vim.g.gruvbox_material_enable_italic = 0
             vim.g.gruvbox_material_enable_bold = 0
             vim.g.gruvbox_material_transparent_background = 1
+
             -- Themes
             vim.g.gruvbox_material_statusline_style = "material"
             vim.g.gruvbox_material_foreground = "material"
@@ -17,12 +18,17 @@ return {
             vim.g.gruvbox_material_ui_contrast = "soft" -- The contrast of line numbers, indent lines, etc.
             vim.g.gruvbox_material_float_style = "dim"  -- Background of floating windows
 
+            vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
+            vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "Normal" })
+            vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
+
             vim.cmd("colorscheme gruvbox-material")
         end
     },
     {
         "folke/tokyonight.nvim",
-        event = "VeryLazy",
+        -- event = "VeryLazy",
+        lazy = true,
         name = "tokyonight",
         opts = {},
         config = function()
@@ -45,7 +51,8 @@ return {
     },
     {
         "rebelot/kanagawa.nvim",
-        event = "VeryLazy",
+        -- event = "VeryLazy",
+        lazy = true,
         name = "kanagawa",
         config = function()
             require("kanagawa").setup({
