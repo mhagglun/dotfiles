@@ -2,9 +2,10 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
+        "hrsh7th/cmp-nvim-lsp",
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
-        "hrsh7th/cmp-nvim-lsp",
+        "someone-stole-my-name/yaml-companion.nvim",
     },
     config = function()
         local lspconfig = require("lspconfig")
@@ -34,7 +35,9 @@ return {
             handlers = {
 
                 function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {}
+                    require("lspconfig")[server_name].setup {
+                        capabilities = capabilities
+                    }
                 end,
 
                 -- Lua
@@ -105,42 +108,50 @@ return {
                 end,
 
                 ["yamlls"] = function()
-                    local yamll_capabilities = vim.lsp.protocol.make_client_capabilities()
-                    yamll_capabilities.textDocument.foldingRange = {
+                    require("telescope").load_extension("yaml_schema")
+
+                    local yamlls_capabilities = vim.lsp.protocol.make_client_capabilities()
+                    yamlls_capabilities.textDocument.foldingRange = {
                         dynamicRegistration = false,
                         lineFoldingOnly = true
                     }
-                    lspconfig.yamlls.setup {
-                        capabilities = yamll_capabilities,
-                        settings = {
-                            yaml = {
-                                schemaStore = {
-                                    enable = true,
-                                    url = "https://www.schemastore.org/api/json/catalog.json",
-                                },
-                                schemas = {
-                                    kubernetes = "*.yaml",
-                                    ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-                                    ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-                                    ["https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json"] = "azure-pipelines*.{yml,yaml}",
-                                    ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks"] = "roles/tasks/*.{yml,yaml}",
-                                    ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] = "*play*.{yml,yaml}",
-                                    ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-                                    ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-                                    ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-                                    ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
-                                    ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "*gitlab-ci*.{yml,yaml}",
-                                    ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
-                                    ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
-                                    ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
-                                },
-                                format = { enabled = true },
-                                validate = true,
-                                completion = true,
-                                hover = true,
-                            }
+                    local cfg = require("yaml-companion").setup({
+                        builtin_matchers = {
+                            kubernetes = { enabled = true },
+                        },
+                        schemas = {
+                            {
+                                name = "Argo CD Application",
+                                uri =
+                                "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json"
+                            },
+                            {
+                                name = "Argo Workflows",
+                                uri =
+                                "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"
+                            },
+                        },
+                        lspconfig = {
+                            capabilities = yamlls_capabilities,
+                            flags = {
+                                debounce_text_changes = 150,
+                            },
+                            settings = {
+                                redhat = { telemetry = { enabled = false } },
+                                yaml = {
+                                    validate = true,
+                                    completion = true,
+                                    format = { enabled = true },
+                                    hover = true,
+                                    schemaStore = {
+                                        enable = true,
+                                        url = "https://www.schemastore.org/api/json/catalog.json",
+                                    },
+                                }
+                            },
                         }
-                    }
+                    })
+                    lspconfig.yamlls.setup(cfg)
                 end
 
             }

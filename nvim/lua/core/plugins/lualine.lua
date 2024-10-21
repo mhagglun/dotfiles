@@ -42,6 +42,20 @@ return {
                 lualine_y = {
                     {
                         function()
+                            local function get_yaml_schema()
+                                -- Check if the file is a YAML file
+                                if vim.bo.filetype ~= "yaml" then
+                                    return ""
+                                end
+
+                                local schema = require("yaml-companion").get_buf_schema(0)
+                                if schema.result[1].name == "none" then
+                                    return "?"
+                                end
+                                return schema.result[1].name
+                            end
+
+
                             local lsps = vim.lsp.get_active_clients({ bufnr = vim.fn.bufnr() })
                             local icon = require("nvim-web-devicons").get_icon_by_filetype(
                                 vim.api.nvim_buf_get_option(0, "filetype")
@@ -49,7 +63,13 @@ return {
                             if lsps and #lsps > 0 then
                                 local names = {}
                                 for _, lsp in ipairs(lsps) do
-                                    table.insert(names, lsp.name)
+                                   -- If LSP is "yamlls", append the YAML schema in parentheses
+                                    if lsp.name == "yamlls" then
+                                        local schema = get_yaml_schema()
+                                        table.insert(names, string.format("%s (%s)", lsp.name, schema))
+                                    else
+                                        table.insert(names, lsp.name)
+                                    end
                                 end
                                 return string.format("%s %s", icon, table.concat(names, ", "))
                             else

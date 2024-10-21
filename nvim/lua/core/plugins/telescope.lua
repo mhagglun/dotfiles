@@ -14,5 +14,6 @@ return {
         vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
         vim.keymap.set('n', '<leader>fr', builtin.live_grep, {})
         vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+        vim.keymap.set('n', '<leader>fs', '<cmd>Telescope yaml_schema<CR>', {})
     end
 }
