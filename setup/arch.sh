@@ -43,11 +43,6 @@ yay -S --needed \
     kustomize \
     ttf-firacode-nerd \
     noto-fonts \
-    spotify \
-    snapper \
-    snap-pac \
-    snapper-rollback \
-    grub-btrfs
 
 success "All packages installed and up-to-date."
 
