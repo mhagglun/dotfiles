@@ -62,7 +62,7 @@ vim.keymap.set('v', '<leader>sl', '"hy:s/\\v<C-r>h//g<left><left>', { desc = "Re
 
 -- Save
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
-vim.keymap.set("c", "w!!", require("mhagglun.utils").sudo_write, { silent = true, desc = "Save as sudo" })
+vim.keymap.set("c", "w!!", require("core.utils").sudo_write, { silent = true, desc = "Save as sudo" })
 
 -- Terminal
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape terminal" })

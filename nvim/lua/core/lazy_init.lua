@@ -25,11 +25,11 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
     spec = {
         -- import your plugins
-        { import = "mhagglun.plugins" },
+        { import = "core.plugins" },
     },
     -- Configure any other settings here. See the documentation for more details.
     -- colorscheme that will be used when installing plugins.
-    install = { colorscheme = { "tokyonight-storm", "habamax" } },
+    install = { colorscheme = { "gruvbox-material" } },
     -- automatically check for plugin updates
     checker = {
         -- automatically check for plugin updates

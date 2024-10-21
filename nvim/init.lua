@@ -1,2 +1,2 @@
-require("mhagglun")
+require("core")
 
