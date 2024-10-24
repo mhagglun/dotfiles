@@ -23,16 +23,21 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 
--- Show cmd when recording macros
-vim.opt.cmdheight = 0
-vim.api.nvim_create_autocmd("RecordingEnter", {
-  callback = function()
-    vim.opt.cmdheight = 1
-  end
-})
+-- Workaround for cmdheight = 0 breaking move lines
+-- See  https://github.com/neovim/neovim/issues/20635#issuecomment-2198661759
+vim.opt.report = 10
 
+-- Hide cmdline
+vim.opt.cmdheight = 0
+
+-- Show cmd when recording macros
+vim.api.nvim_create_autocmd("RecordingEnter", {
+    callback = function()
+        vim.opt.cmdheight = 1
+    end
+})
 vim.api.nvim_create_autocmd("RecordingLeave", {
-  callback = function()
-    vim.opt.cmdheight = 0
-  end
+    callback = function()
+        vim.opt.cmdheight = 0
+    end
 })
