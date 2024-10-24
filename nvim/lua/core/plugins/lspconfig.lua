@@ -33,8 +33,8 @@ return {
                 "terraformls",
             },
             handlers = {
-
-                function(server_name) -- default handler (optional)
+                -- default handler
+                function(server_name)
                     require("lspconfig")[server_name].setup {
                         capabilities = capabilities
                     }
