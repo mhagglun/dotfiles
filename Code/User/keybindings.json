@@ -154,22 +154,9 @@
     "command": "workbench.action.navigateLeft",
     "when": "vim.active && vim.mode!='Insert'"
   },
-  // {
-  //   "key": "ctrl+c",
-  //   "command": "vim.remap",
-  //   "when": "inputFocus && vim.mode == 'Normal'",
-  //   "args": {
-  //     "after": ["y", "y"]
-  //   }
-  // },
   {
     "key": "ctrl+shift+v",
     "command": "-editor.action.clipboardPasteAction"
-  },
-  {
-    "key": "g d",
-    "command": "editor.action.revealDefinition",
-    "when": "vim.mode == 'Normal' && editorHasDefinitionProvider && editorTextFocus && !isEmbeddedEditor"
   },
   {
     "key": "ctrl+p t",
@@ -178,5 +165,25 @@
   {
     "key": "ctrl+e",
     "command": "workbench.action.toggleSidebarVisibility"
-  }
+  },
+  {
+    "key": "alt+,",
+    "command": "workbench.action.increaseViewWidth",
+    "description": "Increase current window width"
+  },
+  {
+    "key": "alt+.",
+    "command": "workbench.action.decreaseViewWidth",
+    "description": "Decrease current window width"
+  },
+  {
+    "key": "alt+t",
+    "command": "workbench.action.increaseViewHeight",
+    "description": "Increase current window height"
+  },
+  {
+    "key": "alt+s",
+    "command": "workbench.action.decreaseViewHeight",
+    "description": "Decrease current window height"
+  },
 ]

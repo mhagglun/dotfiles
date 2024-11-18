@@ -1,11 +1,11 @@
 {
   "editor.inlineSuggest.enabled": true,
   "editor.fontFamily": "Fira Code",
-  "editor.fontSize": 14,
+  "editor.fontSize": 12,
   "editor.fontLigatures": true,
   "terminal.integrated.defaultProfile.linux": "zsh",
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[python]": {
     "editor.formatOnSave": true,
@@ -15,13 +15,12 @@
   },
   "python.analysis.typeCheckingMode": "basic",
   "python.analysis.autoImportCompletions": true,
-  "workbench.colorTheme": "One Dark Pro Darker",
+  "workbench.colorTheme": "Gruvbox Dark Hard",
   "window.zoomLevel": 2,
   "telemetry.telemetryLevel": "off",
-
   // vim settings
   "vim.leader": "<space>",
-  "vim.easymotion": true,
+  "vim.easymotion": false,
   "vim.incsearch": true,
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
@@ -35,12 +34,16 @@
   ],
   "vim.normalModeKeyBindings": [
     {
-      "before": ["<leader>", "s", "a"],
-      "commands": ["editor.action.selectAll"]
+      "before": ["<tab>"],
+      "commands": ["editor.action.indentLines"]
     },
     {
-      "before": ["<leader>", "w"],
-      "commands": ["workbench.action.files.save"]
+      "before": ["<S-tab>"],
+      "commands": ["editor.action.outdentLines"]
+    },
+    {
+      "before": ["<leader>", "s", "a"],
+      "commands": ["editor.action.selectAll"]
     },
     {
       "before": ["<leader>", "e"],
@@ -67,16 +70,8 @@
       "commands": [":tabnew"]
     },
     {
-      "before": ["<leader>", "t", "x"],
+      "before": ["<leader>", "t", "q"],
       "commands": [":tabclose"]
-    },
-    {
-      "before": ["<S-h>"],
-      "commands": [":tabp"]
-    },
-    {
-      "before": ["<S-l>"],
-      "commands": [":tabnext"]
     },
     {
       "before": ["<leader>", "f", "f"],
@@ -95,19 +90,19 @@
       "commands": ["editor.action.rename"]
     },
     {
-      "before": ["<leader>", "a", "f"],
+      "before": ["<leader>", "c", "a"],
       "commands": ["editor.action.autoFix"]
     },
     {
-      "before": ["<leader>", "r", "a"],
-      "commands": ["editor.action.rename"]
+      "before": ["<leader>", "s", "r"],
+      "commands": ["editor.action.startFindReplaceAction"]
     },
     {
       "before": ["<leader>", "f", "m"],
       "commands": ["editor.action.format"]
     },
     {
-      "before": ["<leader>", "c", "a"],
+      "before": ["<leader>", "c", "f"],
       "commands": ["editor.action.quickFix"]
     },
     {
@@ -117,15 +112,55 @@
     {
       "before": ["<leader>", "e"],
       "commands": ["workbench.files.action.focusFilesExplorer"]
+    },
+    {
+      "before": ["<leader>", "sp"],
+      "commands": ["editor.action.selectAll", "editor.action.clipboardPasteAction"]
+    },
+    {
+      "before": ["<leader>", "sa"],
+      "commands": ["editor.action.selectAll"]
+    },
+    {
+      "before": ["L"],
+      "commands": ["cursorEndSelect"]
+    },
+    {
+      "before": ["<C-d>"],
+      "after": ["<C-d>", "zz"]
+    },
+    {
+      "before": ["<C-u>"],
+      "after": ["<C-u>", "zz"]
+    },
+    {
+      "before": ["N"],
+      "after": ["N", "zzzv"]
+    },
+    {
+      "before": ["n"],
+      "after": ["n", "zzzv"]
+    },
+    {
+      "before": ["<BS>"],
+      "commands": ["cursorHome"]
+    },
+    {
+      "before": ["<leader>", "<tab>"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["<leader>", "<S-tab>"],
+      "commands": ["workbench.action.previousEditor"]
     }
   ],
   "vim.visualModeKeyBindings": [
     {
-      "before": [">"],
+      "before": ["<tab>"],
       "commands": ["editor.action.indentLines"]
     },
     {
-      "before": ["<"],
+      "before": ["<S-tab>"],
       "commands": ["editor.action.outdentLines"]
     },
     {
@@ -142,8 +177,7 @@
     "<C-c>": false,
     "<C-x>": false
   },
-  // To improve performance
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1
-  },
+  }
 }
