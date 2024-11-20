@@ -97,14 +97,23 @@ return {
                 { name = "cmdline" },
             }),
         })
-        vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-            vim.lsp.handlers.hover,
-            { border = 'rounded' }
-        )
+        vim.api.nvim_create_autocmd({ 'VimEnter', 'VimResized' }, {
+            desc = 'Setup LSP hover window',
+            callback = function()
+                local width = math.floor(vim.o.columns * 0.5)
+                local height = math.floor(vim.o.lines * 0.5)
+
+                vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+                    border = 'rounded',
+                    max_width = width,
+                    max_height = height,
+                })
         vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
             vim.lsp.handlers.signature_help,
             { border = 'rounded' }
         )
+            end,
+        })
         vim.diagnostic.config({
             float = {
                 focusable = false,
