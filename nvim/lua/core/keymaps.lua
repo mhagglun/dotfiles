@@ -70,4 +70,5 @@ vim.keymap.set("n", ",st", function ()
 )
 
 -- Misc
-vim.keymap.set("n", "<leader><esc>", function() require('notify').dismiss() end, { desc = "Clear notifications" })
+vim.keymap.set("n", "<leader>x", function() require('notify').dismiss() end, { desc = "Clear notifications" })
+vim.keymap.set("n", "<leader><esc>", ':nohlsearch<CR>', { desc = "Clear notifications" })
