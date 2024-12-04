@@ -12,6 +12,7 @@ return {
                     javascript = { "prettierd", "prettier", stop_after_first = true },
                     typescript = { "prettierd", "prettier", stop_after_first = true },
                     typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+                    -- ["*"] = { "injected" }, -- enables injected-lang formatting for all filetypes
                 },
             })
         end
