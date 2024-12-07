@@ -9,6 +9,13 @@
 )
 
 (
+    expression_statement (
+        call function: (attribute attribute: (identifier) @_method (#any-of? @_method "execute" "executemany" "execute_batch" "mogrify"))
+        arguments: (argument_list (string (string_content) @injection.content (#set! injection.language "sql")))
+    )
+)
+
+(
     [
         (string_content) @injection.content
     ]
