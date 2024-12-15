@@ -16,6 +16,10 @@ return {
                     n = {
                         ["<C-x>"] = require("telescope.actions").delete_buffer,
                         ["<C-h>"] = require("telescope.actions").select_horizontal
+                    },
+                    i = {
+                        ["<C-x>"] = require("telescope.actions").delete_buffer,
+                        ["<C-h>"] = require("telescope.actions").select_horizontal
                     }
                 }
             }
