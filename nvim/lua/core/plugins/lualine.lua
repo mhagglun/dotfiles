@@ -30,6 +30,7 @@ return {
                 lualine_b = { 'branch', 'diff', },
                 lualine_c = { {
                     "filename",
+                    path = 1,
                     symbols = {
                         modified = "●",
                     },
@@ -63,7 +64,7 @@ return {
                             if lsps and #lsps > 0 then
                                 local names = {}
                                 for _, lsp in ipairs(lsps) do
-                                   -- If LSP is "yamlls", append the YAML schema in parentheses
+                                    -- If LSP is "yamlls", append the YAML schema in parentheses
                                     if lsp.name == "yamlls" then
                                         local schema = get_yaml_schema()
                                         table.insert(names, string.format("%s (%s)", lsp.name, schema))
@@ -93,11 +94,7 @@ return {
                 lualine_y = {},
                 lualine_z = {}
             },
-            tabline = {
-                -- lualine_a = {
-                --     { "buffers", mode = 0, icons_enabled = false, separator = { right = "", left = "" } },
-                -- },
-            },
+            tabline = {},
             winbar = {},
             inactive_winbar = {},
             extensions = {}
