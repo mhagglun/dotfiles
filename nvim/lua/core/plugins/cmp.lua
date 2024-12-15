@@ -114,13 +114,22 @@ return {
                 },
             })
 
+            -- NOTE: Issue
+            -- https://github.com/hrsh7th/nvim-cmp/issues/1511
+            -- And workaround
+            -- https://github.com/hrsh7th/cmp-cmdline/issues/52#issuecomment-1704355620
+            local function send_wildchar()
+                local char = vim.fn.nr2char(vim.opt.wildchar:get())
+                local key = vim.api.nvim_replace_termcodes(char, true, false, true)
+                vim.api.nvim_feedkeys(key, "nt", true)
+            end
             cmp.setup.cmdline(":", {
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = cmp.config.sources({
-                    { name = "path" },
-                    { name = 'cmdline' },
-                }),
+                mapping = {
+                    ["<Tab>"] = { c = send_wildchar }
+                },
+                sources = cmp.config.sources({})
             })
+
             vim.api.nvim_create_autocmd({ 'VimEnter', 'VimResized' }, {
                 desc = 'Setup LSP hover window',
                 callback = function()
