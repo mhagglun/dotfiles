@@ -102,7 +102,22 @@ return {
                     end,
 
                     ["ts_ls"] = function()
-                        lspconfig.ts_ls.setup({})
+                        lspconfig.ts_ls.setup({
+                            settings = {
+                                typescript = {
+                                    inlayHints = {
+                                        includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
+                                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                        includeInlayFunctionParameterTypeHints = true,
+                                        includeInlayVariableTypeHints = false,
+                                        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                                        includeInlayPropertyDeclarationTypeHints = false,
+                                        includeInlayFunctionLikeReturnTypeHints = true,
+                                        includeInlayEnumMemberValueHints = true,
+                                    },
+                                },
+                            },
+                        })
                     end,
 
                     ["gopls"] = function()
