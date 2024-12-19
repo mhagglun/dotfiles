@@ -1,7 +1,7 @@
 return {
     'nvim-lualine/lualine.nvim',
     lazy = false,
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = { "echasnovski/mini.icons" },
 
     config = function()
         require('lualine').setup {
@@ -58,7 +58,7 @@ return {
 
 
                             local lsps = vim.lsp.get_active_clients({ bufnr = vim.fn.bufnr() })
-                            local icon = require("nvim-web-devicons").get_icon_by_filetype(
+                            local icon = require("mini.icons").get("filetype",
                                 vim.api.nvim_buf_get_option(0, "filetype")
                             )
                             if lsps and #lsps > 0 then
