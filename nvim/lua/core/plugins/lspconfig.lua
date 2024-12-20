@@ -135,8 +135,6 @@ return {
                     end,
 
                     ["yamlls"] = function()
-                        require("telescope").load_extension("yaml_schema")
-
                         local yamlls_capabilities = vim.lsp.protocol.make_client_capabilities()
                         yamlls_capabilities.textDocument.foldingRange = {
                             dynamicRegistration = false,
@@ -179,6 +177,8 @@ return {
                             }
                         })
                         lspconfig.yamlls.setup(cfg)
+                        vim.keymap.set("n", "<leader>fy", function() require("core.yamlschema").pick_yaml_schema() end,
+                            { desc = "Select yaml schema" })
                     end
 
                 }
