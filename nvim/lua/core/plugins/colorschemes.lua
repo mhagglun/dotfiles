@@ -3,8 +3,9 @@ return {
         "sainnhe/gruvbox-material",
         name = "gruvbox-material",
         config = function()
-            vim.o.background="dark"
-            vim.g.gruvbox_material_better_performance = 1
+            vim.o.background = "dark"
+            -- vim.g.gruvbox_material_better_performance = 1
+
             -- Fonts
             vim.g.gruvbox_material_disable_italic_comment = 0
             vim.g.gruvbox_material_enable_italic = 0
@@ -14,13 +15,10 @@ return {
             -- Themes
             vim.g.gruvbox_material_statusline_style = "material"
             vim.g.gruvbox_material_foreground = "material"
-            vim.g.gruvbox_material_background = "dark"
-            vim.g.gruvbox_material_ui_contrast = "soft" -- The contrast of line numbers, indent lines, etc.
-            vim.g.gruvbox_material_float_style = "dim"  -- Background of floating windows
-
-            vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
-            vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "Normal" })
-            vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
+            vim.g.gruvbox_material_background = "hard"
+            vim.g.gruvbox_material_ui_contrast = "low"
+            vim.g.gruvbox_material_float_style = "bright"
+            -- vim.g.gruvbox_material_diagnostic_virtual_text = "highlighted"
 
             vim.cmd("colorscheme gruvbox-material")
         end

@@ -25,7 +25,6 @@ return {
             local capabilities = require("blink.cmp").get_lsp_capabilities()
 
             --LspInfo Borders
-            require("lspconfig.ui.windows").default_options.border = "double"
             local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
             for type, icon in pairs(signs) do
                 local hl = "DiagnosticSign" .. type
@@ -67,8 +66,11 @@ return {
                     end,
 
                     ["basedpyright"] = function()
-                        local pyright_capabilities = vim.lsp.protocol.make_client_capabilities()
-                        pyright_capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
+                        local pyright_capabilities = vim.deepcopy(capabilities or vim.lsp.protocol.make_client_capabilities())
+
+                        -- Override publishDiagnostics for Pyright
+                        pyright_capabilities.textDocument.publishDiagnostics = pyright_capabilities.textDocument.publishDiagnostics or {}
+                        pyright_capabilities.textDocument.publishDiagnostics.tagSupport = { valueSet = { 2 } }
                         lspconfig.basedpyright.setup({
                             capabilities = pyright_capabilities,
                             settings = {
@@ -225,6 +227,21 @@ return {
                     end, { desc = "Fill inlay hint" })
                 end,
             })
+
+            vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
+              config = config or {}
+              config.focus_id = ctx.method
+              if not (result and result.contents) then
+                return
+              end
+              local markdown_lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
+              markdown_lines = vim.lsp.util.trim_empty_lines(markdown_lines)
+              if vim.tbl_isempty(markdown_lines) then
+                return
+              end
+              return vim.lsp.util.open_floating_preview(markdown_lines, 'markdown', config)
+            end
+
         end
     }
 }
