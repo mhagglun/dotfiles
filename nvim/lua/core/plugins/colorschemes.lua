@@ -4,9 +4,6 @@ return {
     name = "gruvbox-material",
     lazy = false,
     config = function()
-      vim.o.background = "dark"
-      vim.g.gruvbox_material_better_performance = 1
-
       -- Fonts
       vim.g.gruvbox_material_disable_italic_comment = 0
       vim.g.gruvbox_material_enable_italic = 0
@@ -20,6 +17,7 @@ return {
       vim.g.gruvbox_material_ui_contrast = "low"
       vim.g.gruvbox_material_float_style = "dim"
       vim.g.gruvbox_material_menu_selection_background = "green"
+      vim.g.gruvbox_material_better_performance = 1
 
       vim.cmd("colorscheme gruvbox-material")
 
@@ -36,7 +34,7 @@ return {
   },
   {
     "rebelot/kanagawa.nvim",
-    lazy = true,
+    enabled = false,
     name = "kanagawa",
     config = function()
       require("kanagawa").setup({
@@ -64,30 +62,18 @@ return {
           local theme = colors.theme
           return {
             LineNr = { bg = "none" },
-
-            -- telescope
-            TelescopeTitle = { fg = theme.ui.special, bold = true },
-            TelescopePromptNormal = { bg = theme.ui.bg },
-            TelescopePromptBorder = { fg = theme.ui.bg_p2, bg = theme.ui.bg },
-            TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg },
-            TelescopeResultsBorder = { fg = theme.ui.bg_p2, bg = theme.ui.bg },
-            TelescopePreviewNormal = { bg = theme.ui.bg },
-            TelescopePreviewBorder = { fg = theme.ui.bg_p2, bg = theme.ui.bg },
-
-            -- popup menus
-            Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1, blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
+            -- add `blend = vim.o.pumblend` to enable transparency
+            Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1, blend = vim.o.pumblend },
             PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
             PmenuSbar = { bg = theme.ui.bg_m1 },
             PmenuThumb = { bg = theme.ui.bg_p2 },
-
             NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
-
             LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
             MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
           }
         end,
       })
-      -- vim.cmd("colorscheme kanagawa")
+      vim.cmd("colorscheme kanagawa")
     end,
   },
 }

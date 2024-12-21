@@ -9,7 +9,7 @@ return {
       opts = {},
     },
   },
-  version = "v0.*",
+  version = "v0.8.*",
   opts = {
     keymap = {
       -- preset = "super-tab",
@@ -39,7 +39,7 @@ return {
     },
     completion = {
       menu = {
-        border = "single",
+        border = "rounded",
         winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
         draw = {
           treesitter = { "lsp" },
@@ -47,7 +47,7 @@ return {
       },
       documentation = {
         window = {
-          border = "single",
+          border = "rounded",
           winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
         },
       },
@@ -55,7 +55,7 @@ return {
     signature = {
       enabled = true,
       window = {
-        border = "single",
+        border = "rounded",
         winhighlight = "Normal:BlinkCmpSignatureHelp,FloatBorder:BlinkCmpSignatureHelpBorder",
       },
     },

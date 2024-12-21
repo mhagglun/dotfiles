@@ -25,5 +25,7 @@ return {
         preview_split = "right",
       },
     })
+
+    vim.keymap.set("n", "<leader>e", require("oil").toggle_float, { desc = "Open file explorer" })
   end,
 }

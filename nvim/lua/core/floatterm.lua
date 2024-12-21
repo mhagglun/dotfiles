@@ -27,7 +27,7 @@ local create_float_term = function(opts)
     row = row,
     col = col,
     style = "minimal",
-    border = "single",
+    border = "rounded",
   }
 
   local win = vim.api.nvim_open_win(buf, true, win_config)

@@ -8,5 +8,8 @@ return {
       stages = "fade",
     })
     vim.notify = notify
+
+    local km = vim.keymap
+    km.set("n", "<leader><esc>", notify.dismiss, { desc = "Clear notifications" })
   end,
 }

@@ -1,42 +1,55 @@
+local opt = vim.opt
+
 vim.g.mapleader = " "
-vim.opt.guicursor = ""
 
-vim.opt.nu = true
-vim.opt.relativenumber = true
-vim.opt.clipboard = "unnamedplus"
+opt.nu = true
+opt.relativenumber = true
+opt.clipboard = "unnamedplus"
+opt.spelllang = { "en_us" }
 
--- Default indentation
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.smartindent = true
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
+opt.smartindent = true
 
-vim.opt.wrap = false
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
+opt.wrap = true
+opt.linebreak = true
+opt.smartcase = true
+opt.hlsearch = true
+opt.incsearch = true
+vim.o.shortmess = vim.o.shortmess .. "S" -- stops display of current search match in cmdline area
 
-vim.opt.termguicolors = true
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
-vim.opt.updatetime = 50
+opt.scrolloff = 8
+opt.signcolumn = "yes"
+opt.isfname:append("@-@")
+opt.updatetime = 50
+vim.o.lazyredraw = true
 
--- Workaround for cmdheight = 0 breaking move lines
--- See  https://github.com/neovim/neovim/issues/20635#issuecomment-2198661759
-vim.opt.report = 10
+opt.guicursor = ""
+opt.termguicolors = true
+opt.background = "dark"
 
--- Hide cmdline
-vim.opt.cmdheight = 0
+-- split window preferences
+opt.splitright = true -- split vertical window to the right
+opt.splitbelow = true -- split horizontal window to the bottom
+
+opt.iskeyword:append("-") -- consider string-string as whole word
+
+-- workaround for cmdheight = 0 breaking move lines
+-- see  https://github.com/neovim/neovim/issues/20635#issuecomment-2198661759
+opt.report = 10
+-- hide cmdline
+opt.cmdheight = 0
 
 -- Show cmd when recording macros
 vim.api.nvim_create_autocmd("RecordingEnter", {
   callback = function()
-    vim.opt.cmdheight = 1
+    opt.cmdheight = 1
   end,
 })
 vim.api.nvim_create_autocmd("RecordingLeave", {
   callback = function()
-    vim.opt.cmdheight = 0
+    opt.cmdheight = 0
   end,
 })

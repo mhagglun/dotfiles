@@ -1,102 +1,64 @@
 vim.g.mapleader = " "
 
--- File explorer
-vim.keymap.set("n", "<leader>e", function()
-  require("oil").toggle_float()
-end, { desc = "Open file explorer" })
-
+local km = vim.keymap
 -- Navigation
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
-vim.keymap.set({ "n", "v" }, "H", "^", { desc = "Move to first non-blank character" })
-vim.keymap.set({ "n", "v" }, "L", "$", { desc = "Move to end-of-line" })
+km.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+km.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+km.set({ "n", "v" }, "H", "^", { desc = "Move to first non-blank character" })
+km.set({ "n", "v" }, "L", "$", { desc = "Move to end-of-line" })
 
-vim.keymap.set("i", "jj", "<Esc><right>", { desc = "Escape insert mode" })
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Search previous and center cursor" })
-vim.keymap.set("n", "n", "nzzzv", { desc = "Search next and center cursor" })
+km.set("i", "jj", "<Esc><right>", { desc = "Escape insert mode" })
+km.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })
+km.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor" })
+km.set("n", "N", "Nzzzv", { desc = "Search previous and center cursor" })
+km.set("n", "n", "nzzzv", { desc = "Search next and center cursor" })
 
--- Quickfix naigation
-vim.keymap.set("n", "[q", ":cp<CR>", { silent = true, desc = "Previous quickfix item" })
-vim.keymap.set("n", "]q", ":cn<CR>", { silent = true, desc = "Next quickfix item" })
+-- Quick fix navigation
+km.set("n", "[q", ":cp<CR>", { silent = true, desc = "Previous quickfix item" })
+km.set("n", "]q", ":cn<CR>", { silent = true, desc = "Next quickfix item" })
 
 -- Buffers
-vim.keymap.set("n", "<leader>q", "<cmd>bw<CR>", { desc = "Close buffer" })
-vim.keymap.set("n", "<leader>x", "<cmd>bd!<CR>", { desc = "Close buffer without saving" })
-vim.keymap.set("n", "<leader>n", "<cmd>enew<CR>", { desc = "Open a new empty buffer" })
-vim.keymap.set("n", "<leader><tab>", "<cmd>bn<CR>", { desc = "Go to next buffer" })
-vim.keymap.set("n", "<leader><S-tab>", "<cmd>bp<CR>", { desc = "Go to previous buffer" })
+km.set("n", "<leader>q", "<cmd>bw<CR>", { desc = "Close buffer" })
+km.set("n", "<leader>x", "<cmd>bd!<CR>", { desc = "Close buffer without saving" })
+km.set("n", "<leader>n", "<cmd>enew<CR>", { desc = "Open a new empty buffer" })
+km.set("n", "<leader><tab>", "<cmd>bn<CR>", { desc = "Go to next buffer" })
+km.set("n", "<leader><S-tab>", "<cmd>bp<CR>", { desc = "Go to previous buffer" })
 
 -- Windows
-vim.keymap.set("n", "<M-,>", "<c-w>5>", { desc = "Increase current window width" })
-vim.keymap.set("n", "<M-.>", "<c-w>5<", { desc = "Decrease current window width" })
-vim.keymap.set("n", "<M-t>", "<c-w>2+", { desc = "Increase current window height" })
-vim.keymap.set("n", "<M-s>", "<c-w>2-", { desc = "Decrease current window height" })
+km.set("n", "<M-,>", "<c-w>5>", { desc = "Increase current window width" })
+km.set("n", "<M-.>", "<c-w>5<", { desc = "Decrease current window width" })
+km.set("n", "<M-t>", "<c-w>2+", { desc = "Increase current window height" })
+km.set("n", "<M-s>", "<c-w>2-", { desc = "Decrease current window height" })
 
 -- Indentation
-vim.keymap.set("n", "<tab>", ">>", { desc = "Increase indentation" })
-vim.keymap.set("n", "<S-tab>", "<<", { desc = "Decrease indentation" })
-vim.keymap.set("v", "<tab>", ">gv", { desc = "Increase indentation (visual mode)" })
-vim.keymap.set("v", "<S-tab>", "<gv", { desc = "Decrease indentation (visual mode)" })
+km.set("n", "<tab>", ">>", { desc = "Increase indentation" })
+km.set("n", "<S-tab>", "<<", { desc = "Decrease indentation" })
+km.set("v", "<tab>", ">gv", { desc = "Increase indentation (visual mode)" })
+km.set("v", "<S-tab>", "<gv", { desc = "Decrease indentation (visual mode)" })
 
 -- Copy / Paste
-vim.keymap.set("x", "<leader>p", '"_DP', { desc = "Paste without copying replaced text to buffer" })
-vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to system clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without copying to buffer" })
+km.set("x", "<leader>p", '"_DP', { desc = "Paste without copying replaced text to buffer" })
+km.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to system clipboard" })
+km.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
+km.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without copying to buffer" })
 
-vim.keymap.set("n", "<leader>sp", "ggVGp", { desc = "Select all and paste" })
-vim.keymap.set("n", "<leader>sa", "ggVG", { desc = "Select all" })
-
--- Format & Comments
-vim.keymap.set("n", "<leader>fm", function()
-  require("conform").format({ async = true, lsp_fallback = true })
-end, { desc = "Format current buffer" })
-vim.keymap.set("n", "<leader>/", function()
-  require("Comment.api").toggle.linewise.current()
-end, { desc = "Toggle line comment" })
-vim.keymap.set(
-  "v",
-  "<leader>/",
-  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-  { desc = "Toggle line comment on selection" }
-)
+km.set("n", "<leader>sp", "ggVGp", { desc = "Select all and paste" })
+km.set("n", "<leader>sa", "ggVG", { desc = "Select all" })
 
 -- Quick search/replace
-vim.keymap.set(
-  "n",
-  "<leader>sr",
-  [[:%s///g<Left><Left><Left>]],
-  { desc = "Search and replace in file" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>sl",
-  [[:s///g<Left><Left><Left>]],
-  { desc = "Search and replace on line" }
-)
+km.set("n", "<leader>sr", [[:%s///g<Left><Left><Left>]], { desc = "Search and replace in file" })
+km.set("n", "<leader>sl", [[:s///g<Left><Left><Left>]], { desc = "Search and replace on line" })
 
 -- Save
-vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
-vim.keymap.set(
-  "c",
-  "w!!",
-  require("core.utils").sudo_write,
-  { silent = true, desc = "Save as sudo" }
-)
+km.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
+km.set("c", "w!!", require("core.utils").sudo_write, { silent = true, desc = "Save as sudo" })
 
 -- Terminal
-vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape terminal" })
-vim.keymap.set("n", ",st", function()
+km.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape terminal" })
+km.set("n", ",st", function()
   vim.cmd.new()
   vim.cmd.wincmd("J")
   vim.api.nvim_win_set_height(0, 12)
   vim.wo.winfixheight = true
   vim.cmd.term()
 end, { desc = "Open terminal" })
-
--- Misc
-vim.keymap.set("n", "<leader><esc>", function()
-  require("notify").dismiss()
-end, { desc = "Clear notifications" })

@@ -5,7 +5,9 @@ return {
     local fzf = require("fzf-lua")
     local actions = fzf.actions
     fzf.setup({
-      winopts = {},
+      winopts = {
+        border = "rounded",
+      },
       keymap = {
         builtin = {
           true,
@@ -35,21 +37,27 @@ return {
     })
 
     -- Keymaps
-    vim.keymap.set("n", "<leader>fd", ":FzfLua<CR>", { desc = "Fzf Open Dialog" })
-    vim.keymap.set("n", "<leader>ff", function()
-      fzf.files()
-    end, { desc = "Find Files" })
-    vim.keymap.set("n", "<leader>fb", function()
-      fzf.buffers()
-    end, { desc = "Find Buffers" })
-    vim.keymap.set("n", "<leader>fg", function()
-      fzf.git_files()
-    end, { desc = "Find Git files" })
-    vim.keymap.set("n", "<leader>fr", function()
-      fzf.live_grep_glob()
-    end, { desc = "Live grep" })
-    vim.keymap.set("n", "<leader>fq", function()
-      fzf.quickfix()
-    end, { desc = "Find Quickfix" })
+    local km = vim.keymap
+    km.set("n", "<leader>fd", ":FzfLua<CR>", { desc = "Fzf Open Dialog" })
+    km.set("n", "<leader>ff", fzf.files, { desc = "Find Files" })
+    km.set("n", "<leader>fb", fzf.buffers, { desc = "Find Buffers" })
+    km.set("n", "<leader>fg", fzf.git_files, { desc = "Find Git files" })
+    km.set("n", "<leader>fr", fzf.live_grep_glob, { desc = "Live grep" })
+    km.set("n", "<leader>fq", fzf.quickfix, { desc = "Open Quickfix" })
+    km.set("n", "<leader>fs", fzf.spell_suggest, { desc = "Spell suggest" })
+    km.set("n", "<leader>ca", function()
+      require("fzf-lua").lsp_code_actions({
+        winopts = {
+          relative = "cursor",
+          height = 0.2,
+          width = 0.8,
+          row = 1,
+          preview = {
+            layout = "horizontal",
+            horizontal = "right:50%",
+          },
+        },
+      })
+    end, { desc = "Code action" })
   end,
 }
