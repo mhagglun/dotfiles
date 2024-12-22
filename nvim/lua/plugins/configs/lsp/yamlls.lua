@@ -1,15 +1,6 @@
 local M = {}
 
 function M.setup(lspconfig, capabilities)
-  local yamlls_capabilities = vim.deepcopy(capabilities)
-  -- Ensure foldingRange is initialized in capabilities
-  yamlls_capabilities.textDocument = yamlls_capabilities.textDocument or {}
-  yamlls_capabilities.textDocument.foldingRange = yamlls_capabilities.textDocument.foldingRange
-    or {}
-
-  yamlls_capabilities.textDocument.foldingRange.dynamicRegistration = false
-  yamlls_capabilities.textDocument.foldingRange.lineFoldingOnly = true
-
   local cfg = require("yaml-companion").setup({
     builtin_matchers = {
       kubernetes = { enabled = true },
@@ -25,7 +16,7 @@ function M.setup(lspconfig, capabilities)
       },
     },
     lspconfig = {
-      capabilities = yamlls_capabilities,
+      capabilities = capabilities,
       flags = {
         debounce_text_changes = 150,
       },
@@ -49,7 +40,7 @@ function M.setup(lspconfig, capabilities)
   vim.keymap.set(
     "n",
     "<leader>fy",
-    require("core.yamlschema").pick_yaml_schema,
+    require("utils.yamlschema").pick_yaml_schema,
     { desc = "Select yaml schema" }
   )
 end

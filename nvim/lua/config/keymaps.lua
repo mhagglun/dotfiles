@@ -51,10 +51,12 @@ km.set("n", "<leader>sl", [[:s///g<Left><Left><Left>]], { desc = "Search and rep
 
 -- Save
 km.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
-km.set("c", "w!!", require("core.utils").sudo_write, { silent = true, desc = "Save as sudo" })
+km.set("c", "w!!", require("utils.write").sudo_write, { silent = true, desc = "Save as sudo" })
 
 -- Terminal
 km.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Escape terminal" })
+km.set("t", "jj", "<c-\\><c-n>", { desc = "Escape terminal" })
+km.set("n", "<leader>tt", require("utils.floatterm").toggle_term, {})
 km.set("n", ",st", function()
   vim.cmd.new()
   vim.cmd.wincmd("J")

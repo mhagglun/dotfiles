@@ -1,10 +1,10 @@
+alias v=nvim
 alias vim=nvim
 alias icat="kitten icat"
 alias kd="kitten diff"
 
-## Clipboard copy / paste
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+alias pbcopy='wl-copy' # 'xclip -selection clipboard'
+alias pbpaste='wl-paste' # 'xclip -selection clipboard -o'
 
 git_branch_remote() {
     git for-each-ref --sort=-committerdate refs/heads/ --format='%(color: red)%(committerdate:short) %(color: green)<%(authorname)> %(color: cyan)%(refname:short)'
@@ -19,7 +19,7 @@ gitundo () {
 alias gu=gitundo
 
 gitdiffbat() {
-    git diff --name-only --relative --diff-filter=d | xargs batcat --diff
+    git diff --name-only --relative --diff-filter=d | xargs bat --diff
 }
 alias gdb=gitdiffbat
 

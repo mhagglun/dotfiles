@@ -1,3 +1,5 @@
+local M = {}
+
 local state = {
   floatterm = {
     win = -1,
@@ -34,7 +36,7 @@ local create_float_term = function(opts)
   return { buf = buf, win = win }
 end
 
-local toggle_term = function()
+M.toggle_term = function()
   if not vim.api.nvim_win_is_valid(state.floatterm.win) then
     state.floatterm = create_float_term({ buf = state.floatterm.buf })
     if vim.bo[state.floatterm.buf].buftype ~= "terminal" then
@@ -45,5 +47,4 @@ local toggle_term = function()
   end
 end
 
-vim.api.nvim_create_user_command("FloatTerm", toggle_term, {})
-vim.keymap.set({ "n", "t" }, "<leader>tt", toggle_term, {})
+return M
