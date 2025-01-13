@@ -6,7 +6,7 @@ return {
   },
   {
     "saghen/blink.cmp",
-    version = "v0.9.*",
+    version = "v0.10.*",
     dependencies = {
       "rafamadriz/friendly-snippets",
       "giuxtaposition/blink-cmp-copilot",
@@ -55,13 +55,13 @@ return {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
-    build = ":Copilot auth",
     event = "InsertEnter",
     config = function()
       require("copilot").setup({
         suggestion = { enabled = false },
         panel = { enabled = false },
       })
+      vim.cmd("Copilot disable")
     end,
   },
   {
