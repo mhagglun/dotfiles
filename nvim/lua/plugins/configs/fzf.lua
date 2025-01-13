@@ -41,6 +41,9 @@ km.set("n", "<leader>fg", fzf.git_files, { desc = "Find Git files" })
 km.set("n", "<leader>fr", fzf.live_grep_glob, { desc = "Live grep" })
 km.set("n", "<leader>fq", fzf.quickfix, { desc = "Open Quickfix" })
 km.set("n", "<leader>fs", fzf.spell_suggest, { desc = "Spell suggest" })
+
+-- Lsp stuff
+km.set("n", "grr", fzf.lsp_references, { desc = "LSP References" })
 km.set("n", "<leader>ca", function()
   require("fzf-lua").lsp_code_actions({
     winopts = {

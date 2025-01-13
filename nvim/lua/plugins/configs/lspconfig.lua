@@ -93,14 +93,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local opts = { buffer = event.buf }
     km.set("n", "gD", vim.lsp.buf.declaration, opts)
     km.set("n", "gd", vim.lsp.buf.definition, opts)
-    km.set("n", "grr", vim.lsp.buf.references, opts)
+    -- km.set("n", "grr", vim.lsp.buf.references, opts)
     km.set("n", "K", vim.lsp.buf.hover, opts)
     km.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
     km.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
     km.set("n", "[d", vim.diagnostic.goto_prev, opts)
     km.set("n", "]d", vim.diagnostic.goto_next, opts)
     km.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-    km.set("n", "<leader>hs", vim.lsp.buf.signature_help, opts)
+    km.set("n", "<leader>sh", vim.lsp.buf.signature_help, opts)
 
     km.set("n", "<leader>th", function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), { 0 })
