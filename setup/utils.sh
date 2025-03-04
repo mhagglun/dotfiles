@@ -1,27 +1,27 @@
-info () {
+info() {
   printf "\r  [ \033[00;34m..\033[0m ] %s\n" "$1"
 }
 
-user () {
+user() {
   printf "\r  [ \033[0;36m??\033[0m ] %s\n" "$1"
 }
 
-success () {
+success() {
   printf "\r\033[2K  [ \033[00;32mOK\033[0m ] %s\n" "$1"
 }
 
-warn () {
+warn() {
   printf "\r\033[2K  [\033[0;33mWARNING\033[0m] %s\n" "$1"
 }
 
-fail () {
+fail() {
   printf "\r\033[2K  [\033[0;31mFAIL\033[0m] %s\n" "$1"
   echo ''
   exit
 }
 
 command_exists() {
-  command -v "$1" &> /dev/null
+  command -v "$1" &>/dev/null
 }
 
 directory_exists() {
@@ -29,5 +29,5 @@ directory_exists() {
 }
 
 package_exists() {
-  dpkg -l "$1" &> /dev/null
+  dpkg -l "$1" &>/dev/null
 }

@@ -41,16 +41,15 @@ else
   success "All Python build dependencies are already installed."
 fi
 
-
 APT_LIBS=(
-    zsh
-    tmux
-    zoxide
-    fzf
-    jq
-    bat
-    ripgrep
-    xclip
+  zsh
+  tmux
+  zoxide
+  fzf
+  jq
+  bat
+  ripgrep
+  xclip
 )
 
 info "Checking install for apt..."

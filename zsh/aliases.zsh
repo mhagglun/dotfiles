@@ -7,7 +7,7 @@ alias pbcopy='wl-copy' # 'xclip -selection clipboard'
 alias pbpaste='wl-paste' # 'xclip -selection clipboard -o'
 
 git_branch_remote() {
-    git for-each-ref --sort=-committerdate refs/heads/ --format='%(color: red)%(committerdate:short) %(color: green)<%(authorname)> %(color: cyan)%(refname:short)'
+  git for-each-ref --sort=-committerdate refs/heads/ --format='%(color: red)%(committerdate:short) %(color: green)<%(authorname)> %(color: cyan)%(refname:short)'
 }
 
 alias gbr=git_branch_remote
@@ -19,21 +19,21 @@ gitundo () {
 alias gu=gitundo
 
 gitdiffbat() {
-    git diff --name-only --relative --diff-filter=d | xargs bat --diff
+  git diff --name-only --relative --diff-filter=d | xargs bat --diff
 }
 alias gdb=gitdiffbat
 
 gitdiffkitten() {
-    git difftool --no-symlinks --dir-diff
+  git difftool --no-symlinks --dir-diff
 }
 alias gdk=gitdiffkitten
 
 # Docker
 dclear () {
-    docker ps -a -q | xargs docker kill -f
-    docker ps -a -q | xargs docker rm -f
-    docker images | grep "api\|none" | awk '{print $3}' | xargs docker rmi -f
-    docker volume prune -f
+  docker ps -a -q | xargs docker kill -f
+  docker ps -a -q | xargs docker rm -f
+  docker images | grep "api\|none" | awk '{print $3}' | xargs docker rmi -f
+  docker volume prune -f
 }
 
 alias docker-clear=dclear

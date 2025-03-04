@@ -1,16 +1,16 @@
-source_if_exists () {
-    if test -r "$1"; then
-        source "$1"
-    else
-        printf "\r\033[2K  [\033[0;31mWARNING\033[0m] $1 does not exist or is not readable\n"
-    fi
+source_if_exists() {
+  if test -r "$1"; then
+    source "$1"
+  else
+    printf "\r\033[2K  [\033[0;31mWARNING\033[0m] $1 does not exist or is not readable\n"
+  fi
 }
 
 source_if_exists $HOME/.env.sh
 
 # Hotreload aliases
 precmd() {
-    source $DOTFILES/zsh/aliases.zsh
+  source $DOTFILES/zsh/aliases.zsh
 }
 
 ## Exporting paths
@@ -83,21 +83,21 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions/sr
 source $ZSH/oh-my-zsh.sh
 
 if type "fzf" > /dev/null; then
-    source <(fzf --zsh)
+  source <(fzf --zsh)
 fi
 
 if type "direnv" > /dev/null; then
-    eval "$(direnv hook zsh)"
+  eval "$(direnv hook zsh)"
 fi
 
 if type "pyenv" > /dev/null; then
-    eval "$(pyenv init -)"
+  eval "$(pyenv init -)"
 fi
 
 if type "zoxide" > /dev/null; then
-    eval "$(zoxide init zsh)"
+  eval "$(zoxide init zsh)"
 fi
 
 if type "starship" > /dev/null; then
-    eval "$(starship init zsh)"
+  eval "$(starship init zsh)"
 fi

@@ -1,11 +1,11 @@
-local lspconfig = require("lspconfig")
 local capabilities = require("blink.cmp").get_lsp_capabilities()
+local lspconfig = require("lspconfig")
 
 -- Tell the server the capability of foldingRange,
 -- Neovim hasn't added foldingRange to default capabilities, must add it manually
 capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
 }
 
 -- Helper to safely load server-specific configurations
@@ -44,12 +44,15 @@ require("mason-lspconfig").setup({
 })
 
 local registry = require("mason-registry")
-for _, pkg_name in ipairs { "stylua", "prettier", "prettierd" } do
+for _, pkg_name in ipairs({ "shfmt", "stylua", "prettier", "prettierd" }) do
   local ok, pkg = pcall(registry.get_package, pkg_name)
   if ok then
     if not pkg:is_installed() then
-       pkg:install()
+      pkg:install()
+      vim.notify(string.format('"%s" was successfully installed', pkg_name), nil, { title = "mason.nvim" })
     end
+  else
+    vim.notify(string.format('"%s" is not a valid package', pkg_name), "error", { title = "mason.nvim" })
   end
 end
 
