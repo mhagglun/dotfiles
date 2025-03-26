@@ -1,0 +1,106 @@
+{
+  "position": "top",
+  "layer": "bottom",
+  "height": 1,
+  "modules-left": [
+    "hyprland/workspaces",
+    "custom/separator",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "clock#time"
+  ],
+  "modules-right": [
+    "hyprland/language",
+    "pulseaudio",
+    "network",
+    "tray",
+    "custom/power"
+  ],
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  },
+  "custom/power":{
+    "format": " ⏻ ",
+    "tooltip": false,
+    "on-click": "bash ~/.config/rofi/powermenu.sh",
+    "on-click-right": "killall rofi"
+  },
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-charging": "{capacity}% 󰂅 ",
+    "format-icons": [
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "format-plugged": "{capacity}%  ",
+    "states": {
+      "critical": 15,
+      "warning": 30
+    }
+  },
+  "battery#bat2": {
+    "bat": "bat2"
+  },
+  "clock#time": {
+    "format": "{:%H:%M}",
+    "interval": 60,
+    "tooltip": true,
+    "tooltip-format": "<big>{:%Y-%m-%d}</big>\n<tt><big>{calendar}</big></tt>"
+  },
+  "custom/separator": {
+    "format": "<span foreground='#ebdbb2'>|</span>",
+    "interval": 1
+  },
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{name}",
+    "on-click": "activate",
+    "sort-by-number": true
+  },
+  "hyprland/language": {
+    "format": "󰌌 {}",
+    "format-en": "US",
+    "format-se": "SE",
+    "interval": 1,
+    "on-click": "hyprctl switchxkblayout all next"
+  },
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 25
+  },
+  "network": {
+    "format-wifi": "<span size='13000' foreground='#f5e0dc'>  </span>{essid}",
+    "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󰤭  </span> Disconnected",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected",
+    "tooltip-format-wifi": "Signal Strenght: {signalStrength}%"
+  },
+  "pulseaudio": {
+		"tooltip": false,
+		"scroll-step": 5,
+		"format": "{icon} {volume}%",
+		"format-muted": "muted",
+		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"format-icons": {
+			"default": ["", "", ""]
+		}
+	},
+  "temperature": {
+    "critical-threshold": 80,
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": [
+      ""
+    ]
+  }
+}

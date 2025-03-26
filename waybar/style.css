@@ -1,0 +1,153 @@
+* {
+  font-family: Berkeley Mono;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+window#waybar {
+  background-color: transparent;
+  color: #ebdbb2;
+}
+
+window#waybar > box {
+  margin: 0px 0px 0px 0px;
+  background-color: #1d2021;
+  border-top: 1px;
+  border-color: #282828;
+  border-style: solid;
+  box-shadow: 1 1 3 1px #101010;
+}
+
+button {
+    box-shadow: inset 0 -3px transparent;
+    border: none;
+    border-radius: 0;
+}
+
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -3px #d79921;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #ebdbb2;
+}
+
+#workspaces button:hover {
+    background: #1d2021;
+    color: #ebdbb2;
+}
+
+#workspaces button.focused {
+    background-color: #282828;
+    box-shadow: inset 0 -2px #d79921;
+    color: #ebdbb2;
+}
+
+#workspaces button.active {
+    background-color: #282828;
+    box-shadow: inset 0 -2px #ebdbb2;
+    color: #ebdbb2;
+}
+
+#workspaces button.urgent {
+    background-color: #282828;
+    color: #cc241d;
+}
+
+#custom-date,
+#battery,
+#clock,
+#pulseaudio,
+#workspaces,
+#window,
+#language,
+#temperature,
+#text,
+
+#tray {
+  background: #282828;
+  padding: 0 0.6em;
+  margin-right: 4px;
+  margin-left: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  /* border-radius: 11px; */
+  border-style: solid;
+}
+
+#tray {
+  margin-right: 6px;
+}
+
+#custom-separator {
+  background: #1d2021;
+  padding: 0 0.6em;
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+#pulseaudio {
+  margin-right: 2px;
+  margin-left: 2px;
+  color: #ebdbb2;
+}
+
+#clock {
+  color: #ebdbb2;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+
+#custom-date {
+  margin-right: 2px;
+  margin-left: 2px;
+  border-radius: 11 0 0 11px;
+}
+
+#battery {
+  color: #ebdbb2;
+  margin-right: 10px;
+  margin-left: 2px;
+  border-radius: 0 11 11 0px;
+}
+
+#window {
+  color: #ebdbb2;
+  background: #1d2021;
+  padding: 0 0.6em;
+  margin-right: 4px;
+  margin-left: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  background: radial-gradient(circle, #1d2021)
+}
+
+#language {
+  color: #ebdbb2;
+  padding: 0 0.6em;
+  margin-right: 2px;
+  margin-left: 2px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border-radius: 0 11 11 0px;
+}
+
+#temperature {
+  color: #ebdbb2;
+  padding: 0 0.6em;
+  margin-right: 2px;
+  margin-left: 2px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+#workspaces {
+  margin-right: 2px;
+  margin-left: 0px;
+  border-radius: 11 0 0 11px;
+}
