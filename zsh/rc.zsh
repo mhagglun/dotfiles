@@ -33,7 +33,6 @@ source_if_exists /usr/share/nvm/init-nvm.sh
 [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
 source_if_exists /usr/share/nvm/nvm.sh
 source_if_exists /usr/share/nvm/bash_completion
-source_if_exists /usr/share/nvm/install-nvm-exec
 
 # nvidia
 export PATH="/usr/local/cuda/bin:$PATH"
