@@ -120,14 +120,6 @@ return {
     end,
   },
   {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("plugins.configs.harpoon")
-    end,
-  },
-  {
     "nvim-lualine/lualine.nvim",
     lazy = false,
     dependencies = { "echasnovski/mini.icons" },
