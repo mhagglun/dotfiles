@@ -29,10 +29,17 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.local/share/pypoetry/venv/bin:$PATH"
 
 # nvm
-source_if_exists /usr/share/nvm/init-nvm.sh
-[ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
-source_if_exists /usr/share/nvm/nvm.sh
-source_if_exists /usr/share/nvm/bash_completion
+lazy_load_nvm() {
+  unset -f npm node nvm
+  export NVM_DIR=~/.nvm
+  source_if_exists /usr/share/nvm/nvm.sh
+  source_if_exists /usr/share/nvm/bash_completion
+}
+
+nvm() {
+  lazy_load_nvm
+  nvm $@
+}
 
 # nvidia
 export PATH="/usr/local/cuda/bin:$PATH"
@@ -43,11 +50,9 @@ export ZVM_INSTALL="$HOME/.zvm/self"
 export PATH="$PATH:$HOME/.zvm/bin"
 export PATH="$PATH:$ZVM_INSTALL/"
 
-# The next line updates PATH for the Google Cloud SDK.
+# gcp
 if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
 export PATH="$HOME/google-cloud-sdk/bin:$PATH"
-
-# The next line enables shell command completion for gcloud.
 if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
 
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
