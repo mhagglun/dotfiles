@@ -81,8 +81,8 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "blink.cmp",
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
+      "mason-org/mason.nvim",
+      "mason-org/mason-lspconfig.nvim",
       "someone-stole-my-name/yaml-companion.nvim",
     },
     config = function()

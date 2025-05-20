@@ -32,6 +32,9 @@ fzf.setup({
   },
 })
 
+-- Set as defautl picker
+fzf.register_ui_select()
+
 -- Keymaps
 local km = vim.keymap
 km.set("n", "<leader>fd", ":FzfLua<CR>", { desc = "Fzf Open Dialog" })
@@ -41,6 +44,9 @@ km.set("n", "<leader>fg", fzf.git_files, { desc = "Find Git files" })
 km.set("n", "<leader>fr", fzf.live_grep_glob, { desc = "Live grep" })
 km.set("n", "<leader>fq", fzf.quickfix, { desc = "Open Quickfix" })
 km.set("n", "<leader>fs", fzf.spell_suggest, { desc = "Spell suggest" })
+km.set("n", "<leader>fy", function()
+  require("utils.yamlschema").pick_schema(vim.api.nvim_get_current_buf())
+end, { desc = "Select yaml schema" })
 
 -- Lsp stuff
 km.set("n", "grr", fzf.lsp_references, { desc = "LSP References" })

@@ -1,31 +1,8 @@
 local capabilities = require("blink.cmp").get_lsp_capabilities()
-local lspconfig = require("lspconfig")
-
--- Tell the server the capability of foldingRange,
--- Neovim hasn't added foldingRange to default capabilities, must add it manually
-capabilities.textDocument.foldingRange = {
-  dynamicRegistration = false,
-  lineFoldingOnly = true,
-}
-
--- Helper to safely load server-specific configurations
-local function setup_server(server_name)
-  local ok, server_config = pcall(require, "plugins.configs.lsp." .. server_name)
-  if ok then
-    server_config.setup(lspconfig, capabilities)
-  else
-    -- print("No configuration found for server " .. server_name, "using default configuration")
-    lspconfig[server_name].setup({ capabilities = capabilities })
-  end
-end
-
--- Set border style for floating windows
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-  opts = opts or {}
-  opts.border = "rounded"
-  return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
+-- Add same capabilities to all servers
+vim.lsp.config("*", {
+  capabilities = capabilities,
+})
 
 -- Install specified lsps, formatters etc
 require("mason-lspconfig").setup({
@@ -40,19 +17,26 @@ require("mason-lspconfig").setup({
     "ts_ls",
     "terraformls",
   },
-  handlers = { setup_server },
 })
 
 local registry = require("mason-registry")
-for _, pkg_name in ipairs({ "shfmt", "stylua", "prettier", "prettierd" }) do
+for _, pkg_name in ipairs({ "yamlfmt", "shfmt", "stylua", "prettier", "prettierd" }) do
   local ok, pkg = pcall(registry.get_package, pkg_name)
   if ok then
     if not pkg:is_installed() then
       pkg:install()
-      vim.notify(string.format('"%s" was successfully installed', pkg_name), nil, { title = "mason.nvim" })
+      vim.notify(
+        string.format('"%s" was successfully installed', pkg_name),
+        nil,
+        { title = "mason.nvim" }
+      )
     end
   else
-    vim.notify(string.format('"%s" is not a valid package', pkg_name), "error", { title = "mason.nvim" })
+    vim.notify(
+      string.format('"%s" is not a valid package', pkg_name),
+      "error",
+      { title = "mason.nvim" }
+    )
   end
 end
 
@@ -75,6 +59,14 @@ vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
   config = config or {}
   config.focus_id = ctx.method
   return vim.lsp.util.open_floating_preview(markdown_lines, "markdown", config)
+end
+
+-- Set border style for floating windows
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = "rounded"
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
 --LspInfo Borders
