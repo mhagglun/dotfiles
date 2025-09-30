@@ -1,6 +1,9 @@
 local fzf = require("fzf-lua")
 local actions = fzf.actions
 fzf.setup({
+  grep = {
+    rg_opts = "--hidden --column --line-number --no-heading --color=always --smart-case -g '!{.git,.venv,node_modules}/*'"
+  },
   winopts = {
     border = "rounded",
   },
