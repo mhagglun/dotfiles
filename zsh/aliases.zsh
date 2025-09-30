@@ -1,7 +1,6 @@
 alias v=nvim
 alias vim=nvim
-alias icat="kitten icat"
-alias kd="kitten diff"
+alias ls=eza
 
 alias pbcopy='wl-copy' # 'xclip -selection clipboard'
 alias pbpaste='wl-paste' # 'xclip -selection clipboard -o'
@@ -22,11 +21,6 @@ gitdiffbat() {
   git diff --name-only --relative --diff-filter=d | xargs bat --diff
 }
 alias gdb=gitdiffbat
-
-gitdiffkitten() {
-  git difftool --no-symlinks --dir-diff
-}
-alias gdk=gitdiffkitten
 
 # Docker
 dclear () {
