@@ -1,3 +1,5 @@
+export TERM=xterm-256color
+
 source_if_exists() {
   if test -r "$1"; then
     source "$1"
@@ -19,6 +21,7 @@ export ZSH=$HOME/.oh-my-zsh
 export PATH="$PATH:/usr/local/sbin:$DOTFILES/bin:$HOME/.local/bin:$DOTFILES/scripts/"
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:/usr/local/go/bin"
+export PATH="/home/marcus/.bun/bin:$PATH"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -28,18 +31,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.local/share/pypoetry/venv/bin:$PATH"
 
-# nvm
-lazy_load_nvm() {
-  unset -f npm node nvm
-  export NVM_DIR=~/.nvm
-  source_if_exists /usr/share/nvm/nvm.sh
-  source_if_exists /usr/share/nvm/bash_completion
-}
-
-nvm() {
-  lazy_load_nvm
-  nvm $@
-}
+export NVM_DIR=~/.nvm
+source_if_exists /usr/share/nvm/nvm.sh
+source_if_exists /usr/share/nvm/bash_completion
 
 # nvidia
 export PATH="/usr/local/cuda/bin:$PATH"
