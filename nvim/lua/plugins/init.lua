@@ -6,7 +6,7 @@ return {
   },
   {
     "saghen/blink.cmp",
-    version = "v1.3.*",
+    version = "v1.*",
     dependencies = {
       "rafamadriz/friendly-snippets",
       "giuxtaposition/blink-cmp-copilot",
@@ -30,13 +30,6 @@ return {
     lazy = false,
     config = function()
       require("plugins.configs.conform")
-    end,
-  },
-  {
-    "numToStr/Comment.nvim",
-    lazy = false,
-    config = function()
-      require("plugins.configs.comment")
     end,
   },
   {
@@ -172,6 +165,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     build = ":TSUpdate",
     config = function()
       require("plugins.configs.treesitter")

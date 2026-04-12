@@ -18,6 +18,7 @@ require("oil").setup({
     show_hidden = true,
   },
   float = {
+    border = "single",
     preview_split = "right",
   },
 })

@@ -40,7 +40,7 @@ require("lualine").setup({
     lualine_y = {
       {
         function()
-          local lsps = vim.lsp.get_active_clients({ bufnr = vim.fn.bufnr() })
+          local lsps = vim.lsp.get_clients({ bufnr = vim.fn.bufnr() })
           local icon =
             require("mini.icons").get("filetype", vim.api.nvim_buf_get_option(0, "filetype"))
           if lsps and #lsps > 0 then
