@@ -1,0 +1,47 @@
+repos:
+  # ── General file hygiene ──────────────────────────────────────────────────
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: check-yaml
+      - id: check-toml
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+
+  # ── Secrets scanning ──────────────────────────────────────────────────────
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.3
+    hooks:
+      - id: gitleaks
+
+  # ── Shell: lint (shellcheck) ──────────────────────────────────────────────
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+      - id: shellcheck
+        args: [--severity=warning]
+        # .zsh files use zsh-specific syntax that shellcheck can't parse
+        exclude: \.zsh$
+
+  # ── Shell: format (shfmt) ─────────────────────────────────────────────────
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.11.0-1
+    hooks:
+      - id: shfmt
+        # -i 2  : 2-space indent
+        # -ci   : indent switch cases
+        # -bn   : binary ops (&&/||) start next line
+        args: [-i, "2", -ci, -bn, -w]
+        # .zsh files use zsh-specific syntax that shfmt can't parse
+        exclude: \.zsh$
+
+  # ── Lua: format (stylua) ──────────────────────────────────────────────────
+  - repo: https://github.com/JohnnyMorganz/StyLua
+    rev: v2.1.0
+    hooks:
+      - id: stylua
+        args: [--config-path, nvim/.stylua.toml]

@@ -7,4 +7,13 @@ bootstrap:
 
 .PHONY: install
 install:
-	$(CWD)/setup/install.sh 
+	$(CWD)/setup/install.sh
+
+.PHONY: hooks
+hooks:
+	pre-commit install
+	pre-commit install --hook-type commit-msg
+
+.PHONY: hooks-run
+hooks-run:
+	pre-commit run --all-files

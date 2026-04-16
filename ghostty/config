@@ -24,4 +24,3 @@ keybind = ctrl+0=reset_font_size
 # keybind = ctrl+a>k=goto_split:up
 # keybind = ctrl+a>h=goto_split:left
 # keybind = ctrl+a>l=goto_split:right
-

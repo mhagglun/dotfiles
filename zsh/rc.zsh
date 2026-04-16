@@ -23,13 +23,8 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="/home/marcus/.bun/bin:$PATH"
 
-# pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-
-# poetry
-export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="$HOME/.local/share/pypoetry/venv/bin:$PATH"
 
 export NVM_DIR=~/.nvm
 source_if_exists /usr/share/nvm/nvm.sh
@@ -38,11 +33,6 @@ source_if_exists /usr/share/nvm/bash_completion
 # nvidia
 export PATH="/usr/local/cuda/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
-
-# ZVM
-export ZVM_INSTALL="$HOME/.zvm/self"
-export PATH="$PATH:$HOME/.zvm/bin"
-export PATH="$PATH:$ZVM_INSTALL/"
 
 # gcp
 if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
@@ -54,7 +44,6 @@ export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 # ZSH History
 HISTSIZE=5000
 HISTFILE=$HOME/.zsh_history
-SAVEFILE=$HISTFILE
 HISTDUP=erase
 setopt appendhistory
 setopt sharehistory
@@ -80,22 +69,18 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions/sr
 
 source $ZSH/oh-my-zsh.sh
 
+if type "starship" > /dev/null; then
+  eval "$(starship init zsh)"
+fi
+
 if type "fzf" > /dev/null; then
   source <(fzf --zsh)
-fi
-
-if type "direnv" > /dev/null; then
-  eval "$(direnv hook zsh)"
-fi
-
-if type "pyenv" > /dev/null; then
-  eval "$(pyenv init -)"
 fi
 
 if type "zoxide" > /dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
-if type "starship" > /dev/null; then
-  eval "$(starship init zsh)"
+if type "pyenv" > /dev/null; then
+  eval "$(pyenv init -)"
 fi

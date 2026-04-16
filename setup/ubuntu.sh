@@ -46,6 +46,7 @@ APT_LIBS=(
   tmux
   zoxide
   fzf
+  eza
   jq
   bat
   ripgrep
@@ -63,3 +64,21 @@ for pkg in "${APT_LIBS[@]}"; do
   fi
 done
 success "All apt packages are installed"
+
+info "Checking for additional packages to install..."
+
+if ! command_exists starship; then
+  info "Installing starship..."
+  curl -sS https://starship.rs/install.sh | sh
+  success "starship installed"
+else
+  success "starship is already installed"
+fi
+
+if ! command_exists pyenv; then
+  info "Installing pyenv..."
+  curl https://pyenv.run | bash
+  success "pyenv installed"
+else
+  success "pyenv already installed"
+fi

@@ -26,25 +26,22 @@ info "Installing base system packages and developer tools..."
 
 yay -S --needed \
   git \
+  tmux \
   zsh \
+  starship \
   base-devel \
-  kitty \
+  ghostty \
   fzf \
-  direnv \
+  jq \
+  eza \
   tldr \
   bat \
   btop \
   ripgrep \
   zoxide \
   neovim \
-  zvm \
-  npm \
-  kubectl \
-  kustomize \
+  nvm \
   ttf-firacode-nerd \
   noto-fonts
 
 success "All packages installed and up-to-date."
-
-# Post-installation message for btrfs rollbacks
-user "NOTE: btrfs rollbacks require additional manual setup. Refer to documentation for configuring snapper and grub-btrfs."

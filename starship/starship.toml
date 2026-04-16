@@ -93,4 +93,3 @@ format = "[$symbol($version)]($style)"
 symbol = " "
 style = "yellow"
 format = "[$symbol($version)]($style)"
-

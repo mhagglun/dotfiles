@@ -25,10 +25,15 @@ fi
 
 # ----------------------------------------------------------
 
-if ! directory_exists "$HOME/.oh-my-zsh"; then
+if ! command_exists omz; then
   info "oh-my-zsh is not installed. Installing..."
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  success "oh-my-zsh installed"
+else
+  success "oh-my-zsh is already installed"
+fi
 
+if ! directory_exists "$HOME/.oh-my-zsh"; then
   info "installing zsh plugins"
   git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
   git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions"
@@ -36,39 +41,9 @@ if ! directory_exists "$HOME/.oh-my-zsh"; then
   git clone https://github.com/Aloxaf/fzf-tab "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-tab"
   git clone https://github.com/djui/alias-tips.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/alias-tips"
 
-  success "oh-my-zsh installed"
+  success "zsh plugins installed"
 else
-  success "oh-my-zsh is already installed."
-fi
-
-# ----------------------------------------------------------
-
-if ! command_exists starship; then
-  info "Installing starship..."
-  curl -sS https://starship.rs/install.sh | sh
-  success "starship installed"
-else
-  success "starship is already installed"
-fi
-
-# ----------------------------------------------------------
-
-if ! command_exists pyenv; then
-  info "Installing pyenv..."
-  curl https://pyenv.run | bash
-  success "pyenv installed"
-else
-  success "pyenv already installed"
-fi
-
-# ----------------------------------------------------------
-
-if ! command_exists poetry; then
-  info "Installing poetry..."
-  curl -sSL https://install.python-poetry.org | python3 -
-  success "poetry installed"
-else
-  success "poetry is already installed"
+  success "zsh plugins is already installed."
 fi
 
 # Change default shell to zsh if it isn't already

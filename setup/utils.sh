@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+# Utility functions sourced by other setup scripts.
+
 info() {
   printf "\r  [ \033[00;34m..\033[0m ] %s\n" "$1"
 }
