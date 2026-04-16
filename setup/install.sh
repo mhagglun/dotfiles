@@ -12,8 +12,8 @@ if [ -f /etc/os-release ]; then
     info "Detected Arch-based OS. Running arch.sh..."
     bash "$(dirname "$0")/arch.sh"
   elif [[ "$ID" == "ubuntu" || "$ID_LIKE" == "debian" ]]; then
-    info "Detected Ubuntu-based OS. Running apt.sh..."
-    bash "$(dirname "$0")/apt.sh"
+    info "Detected Ubuntu-based OS. Running ubuntu.sh..."
+    bash "$(dirname "$0")/ubuntu.sh"
   else
     error "Unsupported OS: $ID"
     exit 1
@@ -25,25 +25,12 @@ fi
 
 # ----------------------------------------------------------
 
-if ! command_exists omz; then
-  info "oh-my-zsh is not installed. Installing..."
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  success "oh-my-zsh installed"
+if ! command_exists zinit; then
+  info "Installing zinit..."
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+  success "zinit installed"
 else
-  success "oh-my-zsh is already installed"
-fi
-
-if ! directory_exists "$HOME/.oh-my-zsh"; then
-  info "installing zsh plugins"
-  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-  git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions"
-  git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting"
-  git clone https://github.com/Aloxaf/fzf-tab "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-tab"
-  git clone https://github.com/djui/alias-tips.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/alias-tips"
-
-  success "zsh plugins installed"
-else
-  success "zsh plugins is already installed."
+  success "zinit already installed"
 fi
 
 # Change default shell to zsh if it isn't already

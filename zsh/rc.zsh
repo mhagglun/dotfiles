@@ -9,35 +9,27 @@ source_if_exists() {
 }
 
 source_if_exists $HOME/.env.sh
-
-# Hotreload aliases
-precmd() {
-  source $DOTFILES/zsh/aliases.zsh
-}
+source_if_exists $DOTFILES/zsh/aliases.zsh
 
 ## Exporting paths
 export EDITOR=nvim
-export ZSH=$HOME/.oh-my-zsh
 export PATH="$PATH:/usr/local/sbin:$DOTFILES/bin:$HOME/.local/bin:$DOTFILES/scripts/"
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="/home/marcus/.bun/bin:$PATH"
-
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-
-export NVM_DIR=~/.nvm
-source_if_exists /usr/share/nvm/nvm.sh
-source_if_exists /usr/share/nvm/bash_completion
 
 # nvidia
 export PATH="/usr/local/cuda/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 
 # gcp
-if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
 export PATH="$HOME/google-cloud-sdk/bin:$PATH"
-if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then
+  source "$HOME/google-cloud-sdk/path.zsh.inc"
+fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then
+  source "$HOME/google-cloud-sdk/completion.zsh.inc"
+fi
 
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 
@@ -55,6 +47,10 @@ setopt hist_ignore_all_dups
 
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+bindkey '^[[1;5D' backward-word     # Ctrl+Left
+bindkey '^[[1;5C' forward-word      # Ctrl+Right
+bindkey '^H' backward-kill-word     # Ctrl+Backspace
+WORDCHARS=${WORDCHARS//\/[&.;]} # Don't consider certain characters part of the word
 
 # Completion styling
 zstyle ":completion:*" list-colors "${(s.:.)ZLS_COLORS}"
@@ -63,12 +59,52 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 # Fixes slow pasting on larger snippets with fast-syntax-highlighting
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
-# OMZ plugins
-plugins=(git kubectl alias-tips fzf-tab zsh-autosuggestions fast-syntax-highlighting)
-fpath+=${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+# compinit: only re-check security & rebuild dump if it's older than 24h
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
-source $ZSH/oh-my-zsh.sh
+# ZSH plugins
+source_if_exists "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 
+# OMZ snippets – load async after first prompt (turbo mode)
+zinit ice wait lucid; zinit snippet OMZP::git
+zinit ice wait lucid; zinit snippet OMZP::kubectl
+
+# External plugins
+zinit light zsh-users/zsh-autosuggestions  # keep sync: needed immediately for typing
+zinit ice wait lucid; zinit light zsh-users/zsh-completions
+zinit ice wait lucid; zinit light zdharma-continuum/fast-syntax-highlighting
+zinit ice wait lucid; zinit light Aloxaf/fzf-tab
+zinit ice wait lucid; zinit light djui/alias-tips
+
+# ── Lazy NVM ──────────────────────────────────────────────────────────────────
+# Only fully load the first time node/npm/nvm is called.
+export NVM_DIR=~/.nvm
+export PATH="$NVM_DIR/versions/node/$(command ls $NVM_DIR/versions/node 2>/dev/null | sort -V | tail -1)/bin:$PATH"
+
+_load_nvm() {
+  unset -f nvm node npm npx yarn pnpm corepack
+  source_if_exists /usr/share/nvm/nvm.sh
+  source_if_exists /usr/share/nvm/bash_completion
+}
+nvm()     { _load_nvm; nvm "$@"; }
+node()    { _load_nvm; node "$@"; }
+npm()     { _load_nvm; npm "$@"; }
+npx()     { _load_nvm; npx "$@"; }
+yarn()    { _load_nvm; yarn "$@"; }
+pnpm()    { _load_nvm; pnpm "$@"; }
+corepack(){ _load_nvm; corepack "$@"; }
+
+# ── pyenv ────────────────────────────────────────────────────────────────
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# ── Other tools ───────────────────────────────────────────────────────────────
 if type "starship" > /dev/null; then
   eval "$(starship init zsh)"
 fi
@@ -79,8 +115,4 @@ fi
 
 if type "zoxide" > /dev/null; then
   eval "$(zoxide init zsh)"
-fi
-
-if type "pyenv" > /dev/null; then
-  eval "$(pyenv init -)"
 fi
