@@ -8,8 +8,10 @@ source_if_exists() {
   fi
 }
 
-source_if_exists $HOME/.env.sh
+source_if_exists $HOME/.env.dotfiles
 source_if_exists $DOTFILES/zsh/aliases.zsh
+source_if_exists $DOTFILES/aliases/git.zsh
+source_if_exists $DOTFILES/aliases/kubectl.zsh
 
 ## Exporting paths
 export EDITOR=nvim
@@ -69,10 +71,6 @@ fi
 
 # ZSH plugins
 source_if_exists "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-
-# OMZ snippets – load async after first prompt (turbo mode)
-zinit ice wait lucid; zinit snippet OMZP::git
-zinit ice wait lucid; zinit snippet OMZP::kubectl
 
 # External plugins
 zinit light zsh-users/zsh-autosuggestions  # keep sync: needed immediately for typing

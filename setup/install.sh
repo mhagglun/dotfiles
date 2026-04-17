@@ -25,21 +25,34 @@ fi
 
 # ----------------------------------------------------------
 
-if ! command_exists zinit; then
-  info "Installing zinit..."
-  bash -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
-  success "zinit installed"
+# Prompt for shell choice
+chosen_shell=""
+while [[ "$chosen_shell" != "fish" && "$chosen_shell" != "zsh" ]]; do
+  user "Which shell would you like to use? [fish/zsh]: "
+  read -r chosen_shell </dev/tty
+done
+
+# Install plugins for the chosen shell
+if [[ "$chosen_shell" == "fish" ]]; then
+  if ! command_exists fish; then
+    fail "fish is not installed. Please install it first."
+  fi
+  bash "$(dirname "$0")/../fish/install-plugins.sh"
 else
-  success "zinit already installed"
+  if ! command_exists zsh; then
+    fail "zsh is not installed. Please install it first."
+  fi
+  bash "$(dirname "$0")/../zsh/install-plugins.sh"
 fi
 
-# Change default shell to zsh if it isn't already
-if [ "$SHELL" != "$(which zsh)" ]; then
-  info "Changing default shell to zsh..."
-  chsh -s "$(which zsh)"
-  success "Default shell changed to zsh. Please log out and log back in to use zsh as the default shell."
+# Change default shell if needed
+chosen_shell_path="$(which "$chosen_shell")"
+if [ "$SHELL" != "$chosen_shell_path" ]; then
+  info "Changing default shell to $chosen_shell..."
+  chsh -s "$chosen_shell_path"
+  success "Default shell changed to $chosen_shell. Please log out and log back in for the change to take effect."
 else
-  success "zsh is already the default shell."
+  success "$chosen_shell is already the default shell."
 fi
 
 success "All tasks completed successfully!"

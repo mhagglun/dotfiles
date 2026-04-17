@@ -110,15 +110,15 @@ install_dotfiles() {
 }
 
 create_env_file() {
-  if test -f "$HOME/.env.sh"; then
-    success "$HOME/.env.sh file already exists, skipping"
+  if test -f "$HOME/.env.dotfiles"; then
+    success "$HOME/.env.dotfiles file already exists, skipping"
   else
-    echo "export DOTFILES=$DOTFILES" >"$HOME/.env.sh"
-    success 'created ~/.env.sh'
+    echo "export DOTFILES=$DOTFILES" >"$HOME/.env.dotfiles"
+    success 'created ~/.env.dotfiles'
   fi
 }
 
-info "Bootstrappin' dotfiles @ $DOTFILES"
+info "Bootstrapping dotfiles @ $DOTFILES"
 
 install_dotfiles
 create_env_file
