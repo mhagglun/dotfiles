@@ -1,8 +1,10 @@
 return {
   {
-    "windwp/nvim-autopairs",
+    "echasnovski/mini.pairs",
     event = "InsertEnter",
-    config = true,
+    config = function()
+      require("mini.pairs").setup()
+    end,
   },
   {
     "saghen/blink.cmp",
@@ -54,7 +56,6 @@ return {
         suggestion = { enabled = false },
         panel = { enabled = false },
       })
-      vim.cmd("Copilot disable")
     end,
   },
   {
@@ -76,34 +77,18 @@ return {
       "blink.cmp",
       "mason-org/mason.nvim",
       "mason-org/mason-lspconfig.nvim",
-      "someone-stole-my-name/yaml-companion.nvim",
     },
     config = function()
       require("plugins.configs.lspconfig")
     end,
   },
   {
-    "kevinhwang91/nvim-ufo",
-    dependencies = {
-      "kevinhwang91/promise-async",
-      {
-        "luukvbaal/statuscol.nvim",
-        config = function()
-          local builtin = require("statuscol.builtin")
-          require("statuscol").setup({
-            relculright = true,
-            segments = {
-              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-              { text = { "%s" }, click = "v:lua.ScSa" },
-              { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-            },
-          })
-        end,
-      },
-    },
+    "luukvbaal/statuscol.nvim",
     event = "BufReadPost",
     config = function()
-      require("plugins.configs.ufo")
+      require("statuscol").setup({
+        relculright = true,
+      })
     end,
   },
   {
@@ -185,14 +170,6 @@ return {
     priority = 1000,
     config = function()
       require("plugins.configs.gruvbox-material")
-    end,
-  },
-  {
-    "rebelot/kanagawa.nvim",
-    lazy = true,
-    -- enabled = false,
-    config = function()
-      require("plugins.configs.kanagawa")
     end,
   },
 }

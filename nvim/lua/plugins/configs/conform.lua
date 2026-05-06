@@ -2,6 +2,7 @@ local conform = require("conform")
 conform.setup({
   formatters_by_ft = {
     lua = { "stylua" },
+    hcl = { "hcl" },
     python = { "ruff_format", "ruff_fix", "ruff_organize_imports" },
     sql = { "sqlfluff" },
     yaml = { "yamlfmt" },
@@ -15,5 +16,5 @@ conform.setup({
 
 local km = vim.keymap
 km.set("n", "<leader>fm", function()
-  conform.format({ async = true, lsp_fallback = true })
+  conform.format({ async = true, lsp_format = "fallback" })
 end, { desc = "Format current buffer" })

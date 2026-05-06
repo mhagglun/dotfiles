@@ -41,8 +41,7 @@ require("lualine").setup({
       {
         function()
           local lsps = vim.lsp.get_clients({ bufnr = vim.fn.bufnr() })
-          local icon =
-            require("mini.icons").get("filetype", vim.api.nvim_buf_get_option(0, "filetype"))
+          local icon = require("mini.icons").get("filetype", vim.bo.filetype)
           if lsps and #lsps > 0 then
             local names = {}
             for _, lsp in ipairs(lsps) do

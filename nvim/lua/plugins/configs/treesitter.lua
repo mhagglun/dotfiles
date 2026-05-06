@@ -21,8 +21,8 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Install any missing parsers on startup (replaces ensure_installed).
-local ensure_installed = {
+-- Install any missing parsers on startup
+local parsers = {
   "c",
   "go",
   "vimdoc",
@@ -33,7 +33,9 @@ local ensure_installed = {
   "python",
   "markdown",
   "typescript",
+  "javascript",
   "terraform",
+  "hcl",
   "yaml",
   "rst",
   "templ",
@@ -41,7 +43,7 @@ local ensure_installed = {
 
 local already_installed = require("nvim-treesitter.config").get_installed()
 local to_install = vim
-  .iter(ensure_installed)
+  .iter(parsers)
   :filter(function(parser)
     return not vim.tbl_contains(already_installed, parser)
   end)

@@ -4,23 +4,33 @@ vim.lsp.config("*", {
   capabilities = capabilities,
 })
 
+local lsps = {
+  "bashls",
+  "basedpyright",
+  "clangd",
+  "ruff",
+  "lua_ls",
+  "gopls",
+  "yamlls",
+  "ts_ls",
+  "terraformls",
+}
+local formatters = {
+  "yamlfmt",
+  "shfmt",
+  "stylua",
+  "prettier",
+  "prettierd",
+  "hclfmt",
+}
+
 -- Install specified lsps, formatters etc
 require("mason-lspconfig").setup({
-  ensure_installed = {
-    "bashls",
-    "basedpyright",
-    "clangd",
-    "ruff",
-    "lua_ls",
-    "gopls",
-    "yamlls",
-    "ts_ls",
-    "terraformls",
-  },
+  ensure_installed = lsps,
 })
 
 local registry = require("mason-registry")
-for _, pkg_name in ipairs({ "yamlfmt", "shfmt", "stylua", "prettier", "prettierd" }) do
+for _, pkg_name in ipairs(formatters) do
   local ok, pkg = pcall(registry.get_package, pkg_name)
   if ok then
     if not pkg:is_installed() then
@@ -69,26 +79,25 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
---LspInfo Borders
-local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+      [vim.diagnostic.severity.HINT] = "󰠠 ",
+      [vim.diagnostic.severity.INFO] = " ",
+    },
+  },
+})
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
   callback = function(event)
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
-    -- Disabled due to https://github.com/neovim/neovim/issues/23164
-    client.server_capabilities.semanticTokensProvider = nil
-
     -- Keymaps
     local km = vim.keymap
     local opts = { buffer = event.buf }
     km.set("n", "gD", vim.lsp.buf.declaration, opts)
     km.set("n", "gd", vim.lsp.buf.definition, opts)
-    -- km.set("n", "grr", vim.lsp.buf.references, opts)
     km.set("n", "K", vim.lsp.buf.hover, opts)
     km.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
     km.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
@@ -98,7 +107,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     km.set("n", "<leader>sh", vim.lsp.buf.signature_help, opts)
 
     km.set("n", "<leader>th", function()
-      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), { 0 })
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
     end, opts)
     km.set("n", "<leader>hf", require("utils.inlayhints").fill, { desc = "Fill inlay hint" })
   end,

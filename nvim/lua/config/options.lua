@@ -1,7 +1,5 @@
 local opt = vim.opt
 
-vim.g.mapleader = " "
-
 opt.nu = true
 opt.relativenumber = true
 opt.clipboard = "unnamedplus"
@@ -20,11 +18,22 @@ opt.hlsearch = true
 opt.incsearch = true
 vim.o.shortmess = vim.o.shortmess .. "S" -- stops display of current search match in cmdline area
 
+opt.undofile = true
+opt.undodir = vim.fn.stdpath("data") .. "/undo"
+
+-- folds
+opt.foldenable = true
+opt.foldcolumn = "0"
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.fillchars = { eob = " ", fold = " ", foldopen = " ", foldsep = " ", foldclose = " " }
+
 opt.scrolloff = 8
 opt.signcolumn = "yes"
 opt.isfname:append("@-@")
 opt.updatetime = 50
-vim.o.lazyredraw = true
 
 opt.guicursor = ""
 opt.termguicolors = true

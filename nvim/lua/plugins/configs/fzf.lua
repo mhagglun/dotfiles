@@ -9,12 +9,10 @@ fzf.setup({
   },
   keymap = {
     builtin = {
-      true,
       ["<C-d>"] = "preview-page-down",
       ["<C-u>"] = "preview-page-up",
     },
     fzf = {
-      true,
       ["ctrl-d"] = "preview-page-down",
       ["ctrl-u"] = "preview-page-up",
       ["ctrl-q"] = "select-all+accept",
@@ -40,7 +38,7 @@ fzf.register_ui_select()
 
 -- Keymaps
 local km = vim.keymap
-km.set("n", "<leader>fd", ":FzfLua<CR>", { desc = "Fzf Open Dialog" })
+km.set("n", "<leader>fo", ":FzfLua<CR>", { desc = "Fzf Open Dialog" })
 km.set("n", "<leader>ff", fzf.files, { desc = "Find Files" })
 km.set("n", "<leader>fb", fzf.buffers, { desc = "Find Buffers" })
 km.set("n", "<leader>fg", fzf.git_files, { desc = "Find Git files" })
@@ -53,6 +51,8 @@ end, { desc = "Select yaml schema" })
 
 -- Lsp stuff
 km.set("n", "grr", fzf.lsp_references, { desc = "LSP References" })
+km.set("n", "<leader>fd", fzf.diagnostics_document, { desc = "Document diagnostics" })
+km.set("n", "<leader>fD", fzf.diagnostics_workspace, { desc = "Workspace diagnostics" })
 km.set("n", "<leader>ca", function()
   require("fzf-lua").lsp_code_actions({
     winopts = {
